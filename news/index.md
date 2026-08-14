@@ -1,5 +1,16 @@
 # Changelog
 
+## PhysioMSKNet 0.3.0
+
+- Elastic-tendon extension to the Hill model (`R/hill-elastic.R`):
+  - [`tendonForceLength()`](https://x-biosignal.github.io/PhysioMSKNet/reference/tendonForceLength.md)
+    — tendon force-length curve.
+  - [`equilibriumFiberLength()`](https://x-biosignal.github.io/PhysioMSKNet/reference/equilibriumFiberLength.md)
+    — solves the quasi-static muscle-tendon force equilibrium for the
+    fiber length, accounting for tendon compliance.
+  - [`emgDrivenForceElastic()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForceElastic.md)
+    — EMG-driven force with a compliant tendon.
+
 ## PhysioMSKNet 0.2.0
 
 - Forward EMG-driven Hill-type muscle model (`R/hill-model.R`): turns an

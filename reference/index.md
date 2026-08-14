@@ -14,6 +14,8 @@
   : Compare EMG and MSK Communities
 - [`emgDrivenForce()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForce.md)
   : EMG-driven muscle force
+- [`emgDrivenForceElastic()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForceElastic.md)
+  : EMG-driven force with a compliant tendon
 - [`emgDrivenJointMoment()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenJointMoment.md)
   : EMG-driven joint moment
 - [`emgDrivenParams()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenParams.md)
@@ -26,6 +28,8 @@
   : EMG envelope to neural excitation
 - [`emgToMSKMapping()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgToMSKMapping.md)
   : Map EMG Channels to MSK Muscles
+- [`equilibriumFiberLength()`](https://x-biosignal.github.io/PhysioMSKNet/reference/equilibriumFiberLength.md)
+  : Equilibrium fiber length with a compliant tendon
 - [`excitationToActivation()`](https://x-biosignal.github.io/PhysioMSKNet/reference/excitationToActivation.md)
   : Excitation-to-activation dynamics
 - [`forceLengthActive()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthActive.md)
@@ -207,5 +211,7 @@
   : Project to Bone-centric Graph
 - [`projectMuscleGraph()`](https://x-biosignal.github.io/PhysioMSKNet/reference/projectMuscleGraph.md)
   : Project to Muscle-centric Graph
+- [`tendonForceLength()`](https://x-biosignal.github.io/PhysioMSKNet/reference/tendonForceLength.md)
+  : Tendon force-length curve
 - [`vertexDegree()`](https://x-biosignal.github.io/PhysioMSKNet/reference/vertexDegree.md)
   : Vertex (Bone) Degree

@@ -60,12 +60,14 @@
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/dot-transferEntropyPairwise.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgCommunityCompare.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForce.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForceElastic.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenJointMoment.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenParams.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgMSKEnrichment.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgStructuralCoherence.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgToExcitation.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgToMSKMapping.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/equilibriumFiberLength.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/excitationToActivation.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthActive.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthPassive.html</loc></url>
@@ -157,6 +159,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/plotMSKNetwork.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/projectBoneGraph.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/projectMuscleGraph.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/tendonForceLength.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/vertexDegree.html</loc></url>
 </urlset>
 
