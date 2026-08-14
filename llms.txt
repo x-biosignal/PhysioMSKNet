@@ -346,18 +346,38 @@ Community and policy documents live in the umbrella repository:
 
 - [`MSKHypergraph()`](https://x-biosignal.github.io/PhysioMSKNet/reference/MSKHypergraph.md)
   : Create MSK Hypergraph Object
+- [`calibrateEMGDrivenModel()`](https://x-biosignal.github.io/PhysioMSKNet/reference/calibrateEMGDrivenModel.md)
+  : Calibrate an EMG-driven model to measured joint moments
 - [`defaultMusclePath()`](https://x-biosignal.github.io/PhysioMSKNet/reference/defaultMusclePath.md)
   : Build a linear muscle-path model from the moment-arm lookup
 - [`degreeDistribution()`](https://x-biosignal.github.io/PhysioMSKNet/reference/degreeDistribution.md)
   : Degree Distribution
 - [`emgCommunityCompare()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgCommunityCompare.md)
   : Compare EMG and MSK Communities
+- [`emgDrivenForce()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForce.md)
+  : EMG-driven muscle force
+- [`emgDrivenJointMoment()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenJointMoment.md)
+  : EMG-driven joint moment
+- [`emgDrivenParams()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenParams.md)
+  : Default EMG-driven muscle parameters
 - [`emgMSKEnrichment()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgMSKEnrichment.md)
   : EMG Activation Enrichment by MSK Community
 - [`emgStructuralCoherence()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgStructuralCoherence.md)
   : Compare EMG Coherence with MSK Structural Connectivity
+- [`emgToExcitation()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgToExcitation.md)
+  : EMG envelope to neural excitation
 - [`emgToMSKMapping()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgToMSKMapping.md)
   : Map EMG Channels to MSK Muscles
+- [`excitationToActivation()`](https://x-biosignal.github.io/PhysioMSKNet/reference/excitationToActivation.md)
+  : Excitation-to-activation dynamics
+- [`forceLengthActive()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthActive.md)
+  : Active force-length multiplier
+- [`forceLengthPassive()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthPassive.md)
+  : Passive force-length multiplier
+- [`forceVelocity()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceVelocity.md)
+  : Force-velocity multiplier
+- [`hillMuscleForce()`](https://x-biosignal.github.io/PhysioMSKNet/reference/hillMuscleForce.md)
+  : Hill-type muscle force
 - [`hyperedgeDegree()`](https://x-biosignal.github.io/PhysioMSKNet/reference/hyperedgeDegree.md)
   : Hyperedge (Muscle) Degree
 - [`imuCommunityDynamics()`](https://x-biosignal.github.io/PhysioMSKNet/reference/imuCommunityDynamics.md)

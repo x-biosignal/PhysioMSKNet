@@ -34,7 +34,7 @@ mskRecoveryTrajectoryFit(
   Logical; when `TRUE` and there is more than one muscle, an exponential
   fit is estimated by partial pooling across muscles via a population
   NLME
-  ([`PhysioClinStats::recoveryTrajectoryLME`](https://rdrr.io/pkg/PhysioClinStats/man/recoveryTrajectoryLME.html),
+  ([`PhysioClinStats::recoveryTrajectoryLME`](https://x-biosignal.github.io/PhysioClinStats/reference/recoveryTrajectoryLME.html),
   if installed), rather than one independent NLS per muscle. Defaults to
   `FALSE` (the independent-NLS behaviour), which is also the fallback if
   the NLME is unavailable or fails to converge.

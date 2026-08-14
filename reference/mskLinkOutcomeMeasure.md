@@ -3,7 +3,7 @@
 Maps an MSK-network functional-outcome prediction to a validated
 clinical outcome measure (COM) instrument and its WHO ICF category tags
 (via
-[`PhysioAnnotationHub::tagICF()`](https://x-biosignal.r-universe.dev/PhysioAnnotationHub/reference/tagICF.html),
+[`PhysioAnnotationHub::tagICF()`](https://x-biosignal.github.io/PhysioAnnotationHub//reference/tagICF.html),
 when that package is installed). This bridges an abstract network
 prediction to a documented, ICF-anchored clinical instrument.
 

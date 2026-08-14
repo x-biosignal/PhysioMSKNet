@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,6 +50,19 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioMSKNet/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="physiomsknet-020">PhysioMSKNet 0.2.0<a class="anchor" aria-label="anchor" href="#physiomsknet-020"></a></h2>
+<ul><li>Forward EMG-driven Hill-type muscle model (<code>R/hill-model.R</code>): turns an EMG envelope into physical muscle force and joint torque (N.m), replacing the amplitude proxy.
+<ul><li>
+<code><a href="../reference/excitationToActivation.html">excitationToActivation()</a></code> — first-order activation dynamics (Thelen 2003).</li>
+<li>
+<code><a href="../reference/forceLengthActive.html">forceLengthActive()</a></code>, <code><a href="../reference/forceLengthPassive.html">forceLengthPassive()</a></code>, <code><a href="../reference/forceVelocity.html">forceVelocity()</a></code>, <code><a href="../reference/hillMuscleForce.html">hillMuscleForce()</a></code> — the Hill contractile + passive elements.</li>
+<li>
+<code><a href="../reference/emgToExcitation.html">emgToExcitation()</a></code>, <code><a href="../reference/emgDrivenForce.html">emgDrivenForce()</a></code>, <code><a href="../reference/emgDrivenJointMoment.html">emgDrivenJointMoment()</a></code> — the forward EMG-to-moment pipeline over normalised fiber kinematics from <code><a href="../reference/muscleTendonKinematics.html">muscleTendonKinematics()</a></code>.</li>
+<li>
+<code><a href="../reference/calibrateEMGDrivenModel.html">calibrateEMGDrivenModel()</a></code> — CEINMS-style calibration to measured joint moments.</li>
+</ul></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="physiomsknet-010">PhysioMSKNet 0.1.0<a class="anchor" aria-label="anchor" href="#physiomsknet-010"></a></h2>
 <p>Initial release as a standalone package in the x-biosignal ecosystem. PhysioMSKNet brings network-science analysis of the human musculoskeletal system to R, implementing the hypergraph model of Murphy et al. (2018, PLOS Biology) and bridging it to multi-modal physiological signals (EMG, MoCap, IMU, EEG, OpenSim) for rehabilitation-oriented analysis.</p>

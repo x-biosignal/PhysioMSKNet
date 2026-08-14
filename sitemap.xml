@@ -7,6 +7,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/index.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/news/index.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/MSKHypergraph.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/calibrateEMGDrivenModel.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/defaultMusclePath.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/degreeDistribution.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/dot-alignSynergies.html</loc></url>
@@ -58,9 +59,18 @@
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/dot-selectNSynergies.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/dot-transferEntropyPairwise.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgCommunityCompare.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForce.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenJointMoment.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenParams.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgMSKEnrichment.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgStructuralCoherence.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgToExcitation.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/emgToMSKMapping.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/excitationToActivation.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthActive.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthPassive.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/forceVelocity.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/hillMuscleForce.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/hyperedgeDegree.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/imuCommunityDynamics.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioMSKNet/reference/imuImpactPrediction.html</loc></url>

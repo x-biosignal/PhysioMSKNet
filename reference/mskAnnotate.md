@@ -21,7 +21,7 @@ mskAnnotate(hg = NULL, hub = NULL)
 - hub:
 
   A PhysioAnnotationHub object. If NULL, loads via
-  [`PhysioAnnotationHub::loadAnnotationHub()`](https://x-biosignal.r-universe.dev/PhysioAnnotationHub/reference/loadAnnotationHub.html).
+  [`PhysioAnnotationHub::loadAnnotationHub()`](https://x-biosignal.github.io/PhysioAnnotationHub//reference/loadAnnotationHub.html).
 
 ## Value
 

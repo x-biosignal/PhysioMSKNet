@@ -1,5 +1,26 @@
 # Changelog
 
+## PhysioMSKNet 0.2.0
+
+- Forward EMG-driven Hill-type muscle model (`R/hill-model.R`): turns an
+  EMG envelope into physical muscle force and joint torque (N.m),
+  replacing the amplitude proxy.
+  - [`excitationToActivation()`](https://x-biosignal.github.io/PhysioMSKNet/reference/excitationToActivation.md)
+    — first-order activation dynamics (Thelen 2003).
+  - [`forceLengthActive()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthActive.md),
+    [`forceLengthPassive()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceLengthPassive.md),
+    [`forceVelocity()`](https://x-biosignal.github.io/PhysioMSKNet/reference/forceVelocity.md),
+    [`hillMuscleForce()`](https://x-biosignal.github.io/PhysioMSKNet/reference/hillMuscleForce.md)
+    — the Hill contractile + passive elements.
+  - [`emgToExcitation()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgToExcitation.md),
+    [`emgDrivenForce()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenForce.md),
+    [`emgDrivenJointMoment()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgDrivenJointMoment.md)
+    — the forward EMG-to-moment pipeline over normalised fiber
+    kinematics from
+    [`muscleTendonKinematics()`](https://x-biosignal.github.io/PhysioMSKNet/reference/muscleTendonKinematics.md).
+  - [`calibrateEMGDrivenModel()`](https://x-biosignal.github.io/PhysioMSKNet/reference/calibrateEMGDrivenModel.md)
+    — CEINMS-style calibration to measured joint moments.
+
 ## PhysioMSKNet 0.1.0
 
 Initial release as a standalone package in the x-biosignal ecosystem.
