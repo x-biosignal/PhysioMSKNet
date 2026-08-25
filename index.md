@@ -211,8 +211,7 @@ install.packages("PhysioMSKNet",
 ``` r
 
 # install.packages("remotes")
-remotes::install_github("x-biosignal/PhysioExperiment",
-                        subdir = "physio-ecosystem/PhysioMSKNet")
+remotes::install_github("x-biosignal/PhysioMSKNet")
 ```
 
 ## Quick Start
