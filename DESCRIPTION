@@ -1,0 +1,43 @@
+Package: PhysioMSKNet
+Type: Package
+Title: Musculoskeletal Network Analysis for Physiological Data
+Version: 0.3.0
+Authors@R:
+    person(given = "Yusuke",
+           family = "Matsui",
+           role = c("aut", "cre"),
+           email = "mail.to.matsui@gmail.com")
+Description: Network science analysis of the human musculoskeletal system.
+    Implements hypergraph representations of muscle-bone connections,
+    physical simulation via damped harmonic oscillators, perturbation-based
+    impact scoring, community detection, and clinical outcome prediction.
+    Based on Murphy et al. (2018) <doi:10.1371/journal.pbio.2002811>.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends: R (>= 4.2)
+Imports:
+    Matrix,
+    stats,
+    graphics,
+    grDevices,
+    utils
+Suggests:
+    igraph,
+    MASS,
+    ggplot2,
+    readxl,
+    xml2,
+    PhysioAnnotationHub,
+    PhysioClinical,
+    PhysioClinStats,
+    PhysioCrossModal,
+    PhysioEMG,
+    PhysioMoCap,
+    PhysioOpenSim,
+    SummarizedExperiment,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+URL: https://github.com/x-biosignal/PhysioMSKNet, https://x-biosignal.r-universe.dev/PhysioMSKNet, https://x-biosignal.github.io/PhysioMSKNet
+BugReports: https://github.com/x-biosignal/PhysioMSKNet/issues
