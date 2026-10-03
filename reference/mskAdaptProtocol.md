@@ -56,9 +56,25 @@ An S3 object of class `"MSKAdaptedProtocol"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-protocol <- mskRehabProtocol("Biceps Brachii")
-adapted <- mskAdaptProtocol(reassessment, protocol)
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+outcome <- mskPredictFunctionalOutcome("Biceps Brachii", hg = hg)
+set.seed(1)
+emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+reassessment <- mskReassess(list(emg = emg), outcome, hg = hg)
+protocol <- mskRehabProtocol("Biceps Brachii", hg = hg)
+adapted <- mskAdaptProtocol(reassessment, protocol, hg = hg)
 print(adapted)
-} # }
+#> MSK Adapted Protocol
+#> =====================
+#> Decision: continue 
+#> Rationale: Overall progress 50.0% is within 40-80% range. Continuing current phase. 
+#> 
+#> Adapted Exercises (1):
+#>   Resistance training - Biceps Brachii: 3x12 (moderate)
 ```

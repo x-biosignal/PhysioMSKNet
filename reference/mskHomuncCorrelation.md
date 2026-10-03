@@ -28,3 +28,11 @@ A list with regression result and deviation ratio by category.
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+res <- mskHomuncCorrelation()
+res$r_squared
+#> [1] 0.517333
+```

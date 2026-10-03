@@ -66,8 +66,26 @@ Murphy AC et al. (2018) PLOS Biology 16(1): e2002811.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-pred <- mskClinicalPredictor(c("Biceps Brachii", "Deltoid"))
+# Build a small musculoskeletal hypergraph (bones x muscles incidence)
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+pred <- mskClinicalPredictor("Biceps Brachii", hg = hg, verbose = FALSE)
 print(pred)
-} # }
+#> MSK Clinical Prediction
+#> =======================
+#> Injured muscles: Biceps Brachii 
+#> 
+#> Recovery Prediction:
+#>   Biceps Brachii: 1.8 weeks (95% CI: 1.0-10.5)
+#> 
+#> Top Compensatory Muscles:
+#>   Biceps Brachii: Deltoid, Brachialis
+#> 
+#> Secondary Injury Risk (top 5):
+#>   Deltoid: risk = 1.000
+#>   Brachialis: risk = 0.667
 ```

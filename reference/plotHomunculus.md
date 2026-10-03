@@ -22,3 +22,9 @@ plotHomunculus(homunculus_data = NULL, ...)
 ## Value
 
 Invisible the regression result.
+
+## Examples
+
+``` r
+plotHomunculus()
+```

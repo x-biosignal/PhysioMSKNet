@@ -9,7 +9,7 @@ with shared mapping, skipping analyses when inputs are NULL."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,10 +151,58 @@ or "pca".</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">neuromechSummary</span><span class="op">(</span>eeg <span class="op">=</span> <span class="va">eeg_data</span>, emg <span class="op">=</span> <span class="va">emg_data</span>,</span></span>
-<span class="r-in"><span>                             kinematics <span class="op">=</span> <span class="va">kin_data</span>, force_data <span class="op">=</span> <span class="va">force</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">emg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">emg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>, <span class="st">"Triceps Brachii"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">eeg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">3</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">eeg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C3"</span>, <span class="st">"Cz"</span>, <span class="st">"C4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">kin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span>, length.out <span class="op">=</span> <span class="fl">300</span><span class="op">)</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">kin</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"elbow"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">force_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>, <span class="fl">300</span>, <span class="fl">1</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">force_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"grf"</span></span></span>
+<span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">neuromechSummary</span><span class="op">(</span>eeg <span class="op">=</span> <span class="va">eeg</span>, emg <span class="op">=</span> <span class="va">emg</span>, kinematics <span class="op">=</span> <span class="va">kin</span>,</span></span>
+<span class="r-in"><span>  force_data <span class="op">=</span> <span class="va">force_data</span>, sr <span class="op">=</span> <span class="fl">1000</span>, n_synergies <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MSK Neuromechanics Summary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> =========================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Available analyses: cmc, emd, motor_drive, vulnerability, torque, synergy, directional </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Corticomuscular Coherence ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CMC matrix: 3 EEG x 4 EMG channels</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Significant pairs: 0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Mantel r = 0 , p = 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Electromechanical Delay ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Pairs analyzed: 0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   EMD-distance r = NA , p = NA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Motor Drive Topography ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Muscles analyzed: 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Communities: 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Drive-force r = 0.247 , p = 0.7526 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Integrated Vulnerability ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Trapezius: 11.4074</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Deltoid: 0.1399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Biceps Brachii: 0.1184</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Triceps Brachii: 0.0992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Medial Pterygoid: 0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Joint Torque ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Joints analyzed: 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Muscles matched: 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Muscle Synergy ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Method: nmf </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Synergies: 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   VAF: 0.8341 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Directional Coupling ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Method: granger </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Descending pairs: 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Ascending pairs: 0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

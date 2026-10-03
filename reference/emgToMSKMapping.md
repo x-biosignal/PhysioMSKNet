@@ -36,7 +36,14 @@ muscle_name, match_quality.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-mapping <- emgToMSKMapping(pe_emg, method = "fuzzy")
-} # }
+set.seed(1)
+emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+mapping <- emgToMSKMapping(emg, method = "fuzzy")
+mapping
+#>   channel_idx    channel_name muscle_idx     muscle_name match_quality
+#> 1           1  Biceps Brachii         19  Biceps Brachii             1
+#> 2           2         Deltoid          9         Deltoid             1
+#> 3           3       Trapezius          1       Trapezius             1
+#> 4           4 Triceps Brachii         21 Triceps Brachii             1
 ```

@@ -23,3 +23,17 @@ A symmetric sparse Matrix (n_bones x n_bones)
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+hg <- MSKHypergraph(C)
+as.matrix(projectBoneGraph(hg))
+#>    b1 b2 b3 b4
+#> b1  0  1  0  1
+#> b2  1  0  1  0
+#> b3  0  1  0  1
+#> b4  1  0  1  0
+```

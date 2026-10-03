@@ -126,7 +126,27 @@ An S3 object of class `"MSKNeuromechDirectional"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-result <- neuromechDirectionalCoupling(eeg_data, emg_data, method = "granger")
-} # }
+set.seed(1)
+emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+set.seed(3)
+eeg <- matrix(rnorm(300 * 3), 300, 3); colnames(eeg) <- c("C3", "Cz", "C4")
+result <- neuromechDirectionalCoupling(eeg, emg, method = "granger",
+  sr_eeg = 1000, sr_emg = 1000, n_perm = 19)
+result
+#> MSK Neuromech Directional Coupling
+#> ===================================
+#> Method: granger 
+#> EEG channels: 3 
+#> EMG channels: 4 
+#> Significant descending pairs: 2 
+#> Significant ascending pairs: 0 
+#> 
+#> Dominance ratio (desc/asc) per muscle:
+#>   Biceps Brachii: 5.553 [descending]
+#>   Deltoid: 1.757 [descending]
+#>   Trapezius: 0.804 [ascending]
+#>   Triceps Brachii: 3.332 [descending]
+#> 
+#> Mantel test: r = 0 , p = 1 
 ```

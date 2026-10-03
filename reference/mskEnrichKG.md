@@ -76,12 +76,17 @@ testing multiple annotation types simultaneously.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Test enrichment of upper limb muscles for nerve innervation
-enrichment <- mskEnrichKG(
-  c("Biceps Brachii", "Deltoid", "Trapezius"),
-  annotation_type = "nerve"
-)
-enrichment[enrichment$significant, ]
-} # }
+if (requireNamespace("PhysioAnnotationHub", quietly = TRUE)) {
+  enrichment <- mskEnrichKG(c("Biceps Brachii", "Deltoid", "Trapezius"),
+    annotation_type = "nerve")
+  enrichment[enrichment$significant, ]
+}
+#>                     term count total_in_background   expected fold_enrichment
+#> 1   Accessory Nerve (XI)     1                   2 0.02222222              45
+#> 2         Axillary Nerve     1                   2 0.02222222              45
+#> 3 Musculocutaneous Nerve     1                   3 0.03333333              30
+#>      p_value significant
+#> 1 0.02213961        TRUE
+#> 2 0.02213961        TRUE
+#> 3 0.03308581        TRUE
 ```

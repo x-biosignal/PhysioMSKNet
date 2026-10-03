@@ -53,3 +53,17 @@ An S3 object of class `"MSKOpenSimAnalysis"` with:
 - impact_scores:
 
   Impact scores (if run_simulation = TRUE)
+
+## Details
+
+Requires a native OpenSim installation and an `.osim` model file, so the
+example cannot run offline and is not executed.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Requires a native OpenSim install and an .osim model file.
+result <- opensimNetworkAnalysis(model_path = "gait2392.osim")
+} # }
+```

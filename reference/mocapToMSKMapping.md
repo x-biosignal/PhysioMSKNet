@@ -42,7 +42,10 @@ match_quality, match_method.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-mapping <- mocapToMSKMapping(c("upper_arm", "forearm", "thigh"))
-} # }
+mapping <- mocapToMSKMapping(c("humerus", "radius", "femur"))
+mapping
+#>   segment_name bone_idx bone_name match_quality match_method
+#> 1      humerus       45   Humerus             1       lookup
+#> 2       radius       50    Radius             1        exact
+#> 3        femur      121     Femur             1       lookup
 ```

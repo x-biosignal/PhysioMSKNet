@@ -21,3 +21,10 @@ plotCommunityStructure(community, ...)
 ## Value
 
 Invisible NULL.
+
+## Examples
+
+``` r
+cm <- mskCommunityDetect(MSKHypergraph(), gamma = 4.3)
+plotCommunityStructure(cm)
+```

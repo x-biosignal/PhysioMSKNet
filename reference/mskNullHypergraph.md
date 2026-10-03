@@ -30,3 +30,14 @@ An MSKHypergraph object with rewired connections.
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+set.seed(1)
+null_hg <- mskNullHypergraph(MSKHypergraph(C))
+null_hg$n_muscles
+#> [1] 4
+```

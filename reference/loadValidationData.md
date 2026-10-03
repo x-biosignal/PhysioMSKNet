@@ -48,3 +48,17 @@ A data.frame with the requested validation data
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+rec <- loadValidationData("impact_vs_recovery")
+head(rec)
+#>   recovery_time impact_deviation weight
+#> 1     4.0000000        0.9223696      1
+#> 2     4.0000000       -0.1469508      4
+#> 3    12.0000000       -0.7383454      1
+#> 4    12.0000000        0.9207386      1
+#> 5     2.0000000        0.7011868      6
+#> 6     0.1428571       -0.7736189     30
+```

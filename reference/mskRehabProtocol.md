@@ -36,8 +36,25 @@ a research exploration tool, not clinical guidance.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-protocol <- mskRehabProtocol("Biceps Brachii")
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+protocol <- mskRehabProtocol("Biceps Brachii", hg = hg)
 print(protocol)
-} # }
+#> MSK Rehabilitation Protocol
+#> ===========================
+#> Injured muscles: Biceps Brachii 
+#> Injury communities: 1 
+#> 
+#> Phase 1 - Isolated (1 muscles):
+#>   Biceps Brachii [injured, comm 1]
+#> 
+#> Phase 2 - Intra-community (0 muscles):
+#> 
+#> Phase 3 - Cross-community (2 muscles):
+#>   Brachialis [deg=2, comm 5]
+#>   Deltoid [deg=3, comm 2]
 ```

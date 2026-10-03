@@ -51,3 +51,14 @@ A list with:
 ## References
 
 Murphy AC et al. (2018) PLOS Biology 16(1): e2002811.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+cm <- mskCommunityDetect(MSKHypergraph(C), gamma = 1)
+cm$membership
+#> m1 m2 m3 m4 
+#>  1  1  2  2 
+```

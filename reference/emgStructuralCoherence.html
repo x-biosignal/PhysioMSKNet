@@ -9,7 +9,7 @@ adjacency from the MSK muscle graph using a Mantel test."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,9 +107,39 @@ coherence (default: c(20, 50) for EMG beta/gamma).</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">emgStructuralCoherence</span><span class="op">(</span><span class="va">pe_emg</span>, freq_band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>, <span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>, <span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            nrow <span class="op">=</span> <span class="fl">6</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"bone"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>,</span></span>
+<span class="r-in"><span>                <span class="st">"Triceps Brachii"</span>, <span class="st">"Brachialis"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">hg</span> <span class="op">&lt;-</span> <span class="fu"><a href="MSKHypergraph.html">MSKHypergraph</a></span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">emg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">emg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>, <span class="st">"Triceps Brachii"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">emgStructuralCoherence</span><span class="op">(</span><span class="va">emg</span>, hg <span class="op">=</span> <span class="va">hg</span>, freq_band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $coherence_matrix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Biceps Brachii   Deltoid Trapezius Triceps Brachii</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biceps Brachii       1.0000000 0.7104451  1.410227        1.840081</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deltoid              0.7104451 1.0000000  1.089171        0.889807</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trapezius            1.4102271 1.0891706  1.000000        1.749700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Triceps Brachii      1.8400814 0.8898070  1.749700        1.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $structural_matrix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Biceps Brachii Deltoid Trapezius Triceps Brachii</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biceps Brachii               0       1         0               0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deltoid                      1       0         1               1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trapezius                    0       1         0               1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Triceps Brachii              0       1         1               0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $correlation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.5768419</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p_value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mapped_muscles</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Biceps Brachii"  "Deltoid"         "Trapezius"       "Triceps Brachii"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -63,8 +63,9 @@ anatomical references.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-path <- mskPathwayQuery("Biceps Brachii", "C5")
-cat(path$description, "\n")
-} # }
+if (requireNamespace("PhysioAnnotationHub", quietly = TRUE)) {
+  path <- mskPathwayQuery("Biceps Brachii", "C5")
+  cat(path$description, "\n")
+}
+#> Biceps Brachii -[innervated_by]-> Musculocutaneous Nerve -[spinal_level]-> C5 
 ```

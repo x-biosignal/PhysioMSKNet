@@ -70,3 +70,22 @@ A list with:
 - mapped_sensors:
 
   Data frame of sensor-to-bone mapping used
+
+## Examples
+
+``` r
+set.seed(1)
+n <- 200
+imu <- list(
+  thigh  = matrix(rnorm(n * 3), n, 3),
+  shank  = matrix(rnorm(n * 3), n, 3),
+  foot   = matrix(rnorm(n * 3), n, 3),
+  pelvis = matrix(rnorm(n * 3), n, 3))
+res <- imuNetworkKinematics(imu, signal = "orientation")
+res$mapped_sensors
+#>   sensor_name bone_idx bone_name match_quality match_method
+#> 1       thigh      121     Femur             1       lookup
+#> 2       shank      125     Tibia             1       lookup
+#> 3        foot      111    Tarsus             1       lookup
+#> 4      pelvis      118     Ilium             1       lookup
+```

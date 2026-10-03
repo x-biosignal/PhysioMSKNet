@@ -101,7 +101,65 @@ An S3 object of class `"MSKNeuromechCMC"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-result <- neuromechCorticomuscularCoupling(eeg_data, emg_data)
-} # }
+set.seed(1)
+emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+set.seed(3)
+eeg <- matrix(rnorm(300 * 3), 300, 3); colnames(eeg) <- c("C3", "Cz", "C4")
+result <- neuromechCorticomuscularCoupling(eeg, emg,
+  sr_eeg = 1000, sr_emg = 1000, nperseg = 128, n_perm = 19)
+#> Registered S3 methods overwritten by 'PhysioExperiment':
+#>   method                     from      
+#>   format.PhysioBiomarker     PhysioCore
+#>   print.circular_summary     PhysioCore
+#>   print.waveform_icc         PhysioCore
+#>   print.waveform_reliability PhysioCore
+#>   print.fpca_result          PhysioCore
+result
+#> $cmc_matrix
+#>    Biceps Brachii   Deltoid Trapezius Triceps Brachii
+#> C3      0.7095710 0.1159267 0.7133514      0.26107219
+#> Cz      0.2196750 0.4465115 0.1620129      0.42584079
+#> C4      0.1785555 0.2445085 0.4171538      0.08087673
+#> 
+#> $structural_matrix
+#>                 Biceps Brachii Deltoid Trapezius Triceps Brachii
+#> Biceps Brachii               0       1         1               1
+#> Deltoid                      1       0         1               1
+#> Trapezius                    1       1         0               1
+#> Triceps Brachii              1       1         1               0
+#> 
+#> $emg_cmc_profile
+#>  Biceps Brachii         Deltoid       Trapezius Triceps Brachii 
+#>       0.3692672       0.2689823       0.4308394       0.2559299 
+#> 
+#> $significant_pairs
+#>   eeg_channel     emg_channel coherence
+#> 1          C3       Trapezius 0.7133514
+#> 2          C3  Biceps Brachii 0.7095710
+#> 3          Cz         Deltoid 0.4465115
+#> 4          Cz Triceps Brachii 0.4258408
+#> 5          C4       Trapezius 0.4171538
+#> 6          C3 Triceps Brachii 0.2610722
+#> 
+#> $mantel
+#> $mantel$correlation
+#> [1] 0
+#> 
+#> $mantel$p_value
+#> [1] 1
+#> 
+#> $mantel$n_perm
+#> [1] 19
+#> 
+#> 
+#> $mapping
+#>   channel_idx    channel_name muscle_idx     muscle_name match_quality
+#> 1           1  Biceps Brachii         19  Biceps Brachii             1
+#> 2           2         Deltoid          9         Deltoid             1
+#> 3           3       Trapezius          1       Trapezius             1
+#> 4           4 Triceps Brachii         21 Triceps Brachii             1
+#> 
+#> attr(,"class")
+#> [1] "MSKNeuromechCMC"
 ```

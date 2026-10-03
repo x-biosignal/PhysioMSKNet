@@ -41,3 +41,11 @@ hillMuscleForce(
 ## Value
 
 Muscle force in N.
+
+## Examples
+
+``` r
+hillMuscleForce(activation = 0.5, norm_len = 1, norm_vel = 0,
+                max_isometric_force = 800)
+#> [1] 400
+```

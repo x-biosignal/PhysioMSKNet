@@ -45,3 +45,11 @@ plotMSKNetwork(
 ## Value
 
 Invisible NULL. Produces a plot.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+plotMSKNetwork(MSKHypergraph(C), type = "bone")
+```

@@ -68,10 +68,20 @@ An S3 object of class `"MSKLongitudinalTracker"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-emg_t0 <- matrix(abs(rnorm(400)), 100, 4)
-emg_t1 <- matrix(abs(rnorm(400)), 100, 4)
-colnames(emg_t0) <- colnames(emg_t1) <- paste0("muscle_", 1:4)
-tracker <- mskLongitudinalTracker(list(T0 = emg_t0, T1 = emg_t1))
-} # }
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+mk <- function(s) { set.seed(s); m <- matrix(abs(rnorm(300 * 4)), 300, 4)
+  colnames(m) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii"); m }
+tracker <- mskLongitudinalTracker(list(T0 = mk(1), T1 = mk(2), T2 = mk(3)), hg = hg)
+print(tracker)
+#> MSK Longitudinal Tracker
+#> ========================
+#> Timepoints: 3 ( T0, T1, T2 )
+#> Muscles: 4 
+#> Metrics recorded: 15 observations
+#> Synergy VAF range: 1 - 1 
 ```

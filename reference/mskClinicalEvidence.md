@@ -70,8 +70,19 @@ follow local guidelines and be reviewed by qualified professionals.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-evidence <- mskClinicalEvidence(c("Biceps Brachii", "Deltoid"))
-print(evidence)
-} # }
+if (requireNamespace("PhysioAnnotationHub", quietly = TRUE)) {
+  evidence <- mskClinicalEvidence(c("Biceps Brachii", "Deltoid"))
+  print(evidence)
+}
+#> Annotated MSKHypergraph: 270/270 muscles (100.0%), 173/173 bones (100.0%) matched
+#> MSK Clinical Evidence Report
+#> ============================
+#> Injured muscles: Biceps Brachii, Deltoid 
+#> 
+#> Affected Nerves: Musculocutaneous Nerve, Axillary Nerve 
+#> Affected Spinal Levels: C5-C6 
+#> Functional Impact: elbow_flexion, shoulder_abduction 
+#> 
+#> Synergistic Muscles: Brachialis, Brachioradialis, Supinator, Supraspinatus, Coracobrachialis 
+#> Antagonistic Muscles: Triceps Brachii, Latissimus Dorsi, Teres Major 
 ```

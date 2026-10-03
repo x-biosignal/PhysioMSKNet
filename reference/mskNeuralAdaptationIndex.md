@@ -42,7 +42,21 @@ interpretation ("improving"/"stable"/"declining").
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-nai <- mskNeuralAdaptationIndex(cmc_t0, cmc_t1, dir_t0, dir_t1)
-} # }
+set.seed(1)
+cmc_t0 <- matrix(abs(rnorm(9)), 3, 3)
+cmc_t1 <- matrix(abs(rnorm(9)), 3, 3)
+nai <- mskNeuralAdaptationIndex(cmc_t0, cmc_t1)
+nai
+#> $cmc_change
+#> [1] 0.7545965
+#> 
+#> $directional_change
+#> [1] 0
+#> 
+#> $adaptation_index
+#> [1] 0.1089252
+#> 
+#> $interpretation
+#> [1] "improving"
+#> 
 ```

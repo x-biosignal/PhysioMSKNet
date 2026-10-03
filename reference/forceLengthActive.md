@@ -22,3 +22,10 @@ forceLengthActive(norm_len, width = 0.45)
 ## Value
 
 Multiplier in `[0, 1]`.
+
+## Examples
+
+``` r
+forceLengthActive(seq(0.6, 1.4, by = 0.2))
+#> [1] 0.7007840 0.9149472 1.0000000 0.9149472 0.7007840
+```

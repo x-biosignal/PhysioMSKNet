@@ -11,7 +11,7 @@ vulnerability."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,6 +118,25 @@ acceleration), <code>"angular_velocity"</code> (peak angular velocity),
 
 </dl></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">200</span></span></span>
+<span class="r-in"><span><span class="va">imu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  thigh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="va">n</span>, <span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  shank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="va">n</span>, <span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  foot  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="va">n</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">imuImpactPrediction</span><span class="op">(</span><span class="va">imu</span>, stress_metric <span class="op">=</span> <span class="st">"acceleration"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">ranking</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      muscle vulnerability stress_exposure impact_deviation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Tibialis Posterior      8.346843        3.665007        2.2774425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Extensor Digitorum Longus      8.346843        3.665007        2.2774425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3               Psoas Major      4.039158        4.494336        0.8987217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         Tibialis Anterior      3.293821        3.665007        0.8987217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           Gluteus Maximus      2.799871        4.494336        0.6229775</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   Flexor Digitorum Longus      2.283217        3.665007        0.6229775</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

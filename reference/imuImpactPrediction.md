@@ -62,3 +62,23 @@ A list with:
 - ranking:
 
   Data frame ranked by vulnerability (descending)
+
+## Examples
+
+``` r
+set.seed(1)
+n <- 200
+imu <- list(
+  thigh = matrix(rnorm(n * 3), n, 3),
+  shank = matrix(rnorm(n * 3), n, 3),
+  foot  = matrix(rnorm(n * 3), n, 3))
+pred <- imuImpactPrediction(imu, stress_metric = "acceleration")
+head(pred$ranking)
+#>                      muscle vulnerability stress_exposure impact_deviation
+#> 1        Tibialis Posterior      8.346843        3.665007        2.2774425
+#> 2 Extensor Digitorum Longus      8.346843        3.665007        2.2774425
+#> 3               Psoas Major      4.039158        4.494336        0.8987217
+#> 4         Tibialis Anterior      3.293821        3.665007        0.8987217
+#> 5           Gluteus Maximus      2.799871        4.494336        0.6229775
+#> 6   Flexor Digitorum Longus      2.283217        3.665007        0.6229775
+```

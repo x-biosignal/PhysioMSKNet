@@ -211,7 +211,7 @@ install.packages("PhysioMSKNet",
 
 ``` r
 
-# install.packages("remotes")
+# install.packages("remotes", repos = "https://cloud.r-project.org")
 remotes::install_github("x-biosignal/PhysioMSKNet")
 ```
 
@@ -221,49 +221,61 @@ remotes::install_github("x-biosignal/PhysioMSKNet")
 
 library(PhysioMSKNet)
 
-# --- Build a hypergraph from bundled data ---
+# --- Build the musculoskeletal hypergraph from bundled data ---
+# Bones are vertices; muscles are hyperedges joining their attachment sites.
 inc <- loadIncidenceMatrix()
-hg <- MSKHypergraph(inc)
-print(hg)
+hg  <- MSKHypergraph(inc)
+hg
 
-# --- Compute network metrics ---
+# --- Degrees and structural network metrics ---
+head(sort(vertexDegree(hg), decreasing = TRUE))   # most-connected bones
 metrics <- mskNetworkMetrics(hg)
-metrics$degree
-metrics$betweenness
-metrics$modularity
+head(sort(metrics$degree, decreasing = TRUE))
+metrics$density
 
-# --- Perturbation-based impact analysis ---
-impact <- mskImpactScoreAll(hg)
-head(sort(impact, decreasing = TRUE))
+# --- Project the hypergraph to muscle and bone graphs ---
+muscle_graph <- projectMuscleGraph(hg)
+bone_graph   <- projectBoneGraph(hg)
+dim(muscle_graph)
 
-# --- Detect communities ---
-comm <- mskCommunityDetect(hg)
-profile <- mskCommunityProfile(hg, comm)
+# --- Perturbation-based impact scoring (damped harmonic oscillator model) ---
+sim    <- mskSimulate(hg)
+probe  <- c(1, 5, 10)
+impact <- vapply(probe, function(i) mskImpactScore(sim, muscle_index = i), numeric(1))
+names(impact) <- hg$muscle_names[probe]
+impact
 
-# --- Visualize ---
-plotMSKNetwork(hg, community = comm)
-plotImpactVsDegree(hg, impact)
-plotHomunculus(hg, values = impact)
-
-# --- Cross-modal: map EMG to MSK network ---
-emg_map <- emgToMSKMapping(
-  emg_channels = c("TA", "SOL", "GM", "GL", "RF", "VL", "VM", "BF"),
-  hypergraph = hg
-)
-emgCommunityCompare(emg_map, comm)
-
-# --- Clinical prediction ---
-predictor <- mskClinicalPredictor(
-  features = metrics,
-  outcome = patient_scores,
-  method = "lasso"
-)
-mskPredictFunctionalOutcome(predictor, new_features)
-
-# --- Neuromechanics ---
-synergies <- neuromechMuscleSynergy(emg_data, n_synergies = 4)
-neuromechSummary(hg, emg_data, imu_data)
+# --- Degree distribution ---
+plotDegreeDistribution(hg)
 ```
+
+Community detection, betweenness centrality, and network plotting use
+the optional **igraph** package; the guard keeps the block inert when it
+is absent:
+
+``` r
+
+# install.packages("igraph")
+if (requireNamespace("igraph", quietly = TRUE)) {
+  comm <- mskCommunityDetect(hg)
+  comm$n_communities
+  comm$modularity
+  bw <- mskBetweenness(hg)
+  head(sort(bw, decreasing = TRUE), 3)
+  plotMSKNetwork(hg, community = comm)
+}
+```
+
+Cross-modal mapping
+([`emgToMSKMapping()`](https://x-biosignal.github.io/PhysioMSKNet/reference/emgToMSKMapping.md),
+[`mocapToMSKMapping()`](https://x-biosignal.github.io/PhysioMSKNet/reference/mocapToMSKMapping.md)),
+clinical prediction
+([`mskClinicalPredictor()`](https://x-biosignal.github.io/PhysioMSKNet/reference/mskClinicalPredictor.md)),
+and the neuromechanics bridge
+([`neuromechMuscleSynergy()`](https://x-biosignal.github.io/PhysioMSKNet/reference/neuromechMuscleSynergy.md),
+[`neuromechSummary()`](https://x-biosignal.github.io/PhysioMSKNet/reference/neuromechSummary.md))
+take physiological signal inputs; see the function help pages for worked
+examples.
 
 ## Dependencies
 

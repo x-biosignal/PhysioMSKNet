@@ -42,7 +42,10 @@ match_quality, match_method.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
 mapping <- imuToMSKMapping(c("upper_arm", "thigh", "lumbar"))
-} # }
+mapping
+#>   sensor_name bone_idx bone_name match_quality match_method
+#> 1   upper_arm       45   Humerus             1       lookup
+#> 2       thigh      121     Femur             1       lookup
+#> 3      lumbar       23        L1             1       lookup
 ```

@@ -40,3 +40,10 @@ plotDegreeDistribution(
 ## Value
 
 Invisible NULL.
+
+## Examples
+
+``` r
+hg <- MSKHypergraph()
+plotDegreeDistribution(hg, type = "muscle")
+```

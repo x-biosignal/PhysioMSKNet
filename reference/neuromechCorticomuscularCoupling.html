@@ -13,7 +13,7 @@ muscle adjacency via Mantel test."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,9 +153,67 @@ If NULL, motor cortex channels are auto-selected via <code><a href="dot-eegChann
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">neuromechCorticomuscularCoupling</span><span class="op">(</span><span class="va">eeg_data</span>, <span class="va">emg_data</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">emg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">emg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>, <span class="st">"Triceps Brachii"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">eeg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">3</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">eeg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C3"</span>, <span class="st">"Cz"</span>, <span class="st">"C4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">neuromechCorticomuscularCoupling</span><span class="op">(</span><span class="va">eeg</span>, <span class="va">emg</span>,</span></span>
+<span class="r-in"><span>  sr_eeg <span class="op">=</span> <span class="fl">1000</span>, sr_emg <span class="op">=</span> <span class="fl">1000</span>, nperseg <span class="op">=</span> <span class="fl">128</span>, n_perm <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Registered S3 methods overwritten by 'PhysioExperiment':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   method                     from      </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   format.PhysioBiomarker     PhysioCore</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   print.circular_summary     PhysioCore</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   print.waveform_icc         PhysioCore</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   print.waveform_reliability PhysioCore</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   print.fpca_result          PhysioCore</span>
+<span class="r-in"><span><span class="va">result</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $cmc_matrix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Biceps Brachii   Deltoid Trapezius Triceps Brachii</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> C3      0.7095710 0.1159267 0.7133514      0.26107219</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cz      0.2196750 0.4465115 0.1620129      0.42584079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> C4      0.1785555 0.2445085 0.4171538      0.08087673</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $structural_matrix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Biceps Brachii Deltoid Trapezius Triceps Brachii</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biceps Brachii               0       1         1               1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deltoid                      1       0         1               1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trapezius                    1       1         0               1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Triceps Brachii              1       1         1               0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $emg_cmc_profile</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Biceps Brachii         Deltoid       Trapezius Triceps Brachii </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       0.3692672       0.2689823       0.4308394       0.2559299 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $significant_pairs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   eeg_channel     emg_channel coherence</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          C3       Trapezius 0.7133514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          C3  Biceps Brachii 0.7095710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          Cz         Deltoid 0.4465115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          Cz Triceps Brachii 0.4258408</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          C4       Trapezius 0.4171538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          C3 Triceps Brachii 0.2610722</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mantel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mantel$correlation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mantel$p_value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mantel$n_perm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mapping</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   channel_idx    channel_name muscle_idx     muscle_name match_quality</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           1  Biceps Brachii         19  Biceps Brachii             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           2         Deltoid          9         Deltoid             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           3       Trapezius          1       Trapezius             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           4 Triceps Brachii         21 Triceps Brachii             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MSKNeuromechCMC"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

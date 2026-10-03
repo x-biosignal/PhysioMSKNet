@@ -70,11 +70,21 @@ An S3 object of class `"MSKReassessment"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-reassessment <- mskReassess(
-  current_data = list(emg = emg_matrix),
-  previous_assessment = outcome
-)
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+outcome <- mskPredictFunctionalOutcome("Biceps Brachii", hg = hg)
+set.seed(1)
+emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+reassessment <- mskReassess(list(emg = emg), outcome, hg = hg)
 print(reassessment)
-} # }
+#> MSK Reassessment
+#> =================
+#> Overall progress: 50 / 100
+#> Recommendation: modify_protocol 
+#> 
 ```

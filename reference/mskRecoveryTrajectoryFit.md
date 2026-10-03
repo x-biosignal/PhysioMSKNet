@@ -66,7 +66,20 @@ An S3 object of class `"MSKRecoveryTrajectory"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-traj <- mskRecoveryTrajectoryFit(tracker, model = "exponential")
-} # }
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+mk <- function(s) { set.seed(s); m <- matrix(abs(rnorm(300 * 4)), 300, 4)
+  colnames(m) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii"); m }
+tracker <- mskLongitudinalTracker(list(T0 = mk(1), T1 = mk(2), T2 = mk(3)), hg = hg)
+traj <- mskRecoveryTrajectoryFit(tracker, model = "linear")
+traj
+#> MSK Recovery Trajectory
+#> =======================
+#> Model: linear 
+#> Muscles: 4 
+#> R-squared range: 0.039 - 0.894 
 ```

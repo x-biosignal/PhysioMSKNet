@@ -35,3 +35,15 @@ A list with components:
 
 Murphy AC et al. (2018) "Structure, function, and control of the human
 musculoskeletal network." PLOS Biology 16(1): e2002811.
+
+## Examples
+
+``` r
+data <- loadMSKData()
+dim(data$incidence)
+#> [1] 173 270
+head(data$bone_names)
+#> [1] "External Occipital Protuberance" "Occipital Bone"                 
+#> [3] "Ligamentum Nuchae"               "C1 (Atlas)"                     
+#> [5] "C2 (Axis)"                       "C3"                             
+```

@@ -22,3 +22,9 @@ plotImpactVsRecovery(recovery_data = NULL, ...)
 ## Value
 
 Invisible the regression result.
+
+## Examples
+
+``` r
+plotImpactVsRecovery()
+```

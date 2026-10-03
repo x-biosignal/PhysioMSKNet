@@ -21,3 +21,10 @@ emgDrivenJointMoment(forces, moment_arm)
 ## Value
 
 Net joint moment time series (N.m).
+
+## Examples
+
+``` r
+emgDrivenJointMoment(c(100, 150, 200), moment_arm = 0.03)
+#> [1] 3.0 4.5 6.0
+```

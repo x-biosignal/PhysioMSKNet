@@ -53,8 +53,15 @@ link is available).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-out <- mskPredictFunctionalOutcome(c("Deltoid", "Biceps Brachii"))
-mskLinkOutcomeMeasure(out, "fma_ue", measure = "strength")
-} # }
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+outcome <- mskPredictFunctionalOutcome("Biceps Brachii", hg = hg)
+mskLinkOutcomeMeasure(outcome, "fma_ue", measure = "strength")
+#>   instrument_id  measure predicted_value icf_code
+#> 1        fma_ue strength            88.5     b730
+#> 2        fma_ue strength            88.5     b760
 ```

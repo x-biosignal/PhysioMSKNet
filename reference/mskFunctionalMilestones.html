@@ -9,7 +9,7 @@ time-based milestones for tracking rehabilitation progress."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,11 +101,32 @@ target_strength, target_function, phase_name, description</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="mskPredictFunctionalOutcome.html">mskPredictFunctionalOutcome</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>, <span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>, <span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            nrow <span class="op">=</span> <span class="fl">6</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"bone"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>,</span></span>
+<span class="r-in"><span>                <span class="st">"Triceps Brachii"</span>, <span class="st">"Brachialis"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">hg</span> <span class="op">&lt;-</span> <span class="fu"><a href="MSKHypergraph.html">MSKHypergraph</a></span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="mskPredictFunctionalOutcome.html">mskPredictFunctionalOutcome</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, hg <span class="op">=</span> <span class="va">hg</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">milestones</span> <span class="op">&lt;-</span> <span class="fu">mskFunctionalMilestones</span><span class="op">(</span><span class="va">outcome</span>, milestone_type <span class="op">=</span> <span class="st">"clinical"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">milestones</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MSK Functional Milestones</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> =========================</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Type: clinical </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total timeline: 14 weeks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Milestone 1 (Week 2) - Pain Control:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ROM: 27.4%  Strength: 17.7%  Function: 18.0/80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Pain control, protect repair (target: 25% function)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Milestone 2 (Week 6) - Restore ROM:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ROM: 63.9%  Strength: 44.2%  Function: 36.0/80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Restore ROM (target: 50% function, 70% ROM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Milestone 3 (Week 12) - Strengthen:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ROM: 77.6%  Strength: 70.8%  Function: 53.9/80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Strengthen (target: 75% function, 80% strength)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Milestone 4 (Week 14) - Return to Activity:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     ROM: 86.7%  Strength: 84.1%  Function: 64.7/80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Return to activity (target: 90% function)</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

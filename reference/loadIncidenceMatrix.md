@@ -17,3 +17,11 @@ A sparse Matrix (dgCMatrix) of dimensions 173 x 270
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+C <- loadIncidenceMatrix()
+dim(C)
+#> [1] 173 270
+```

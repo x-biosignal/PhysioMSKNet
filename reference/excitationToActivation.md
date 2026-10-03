@@ -40,3 +40,11 @@ excitationToActivation(
 ## Value
 
 Activation time series in `[0, 1]`.
+
+## Examples
+
+``` r
+u <- c(0, 0, 1, 1, 1, 0, 0)
+excitationToActivation(u, dt = 0.01)
+#> [1] 0.00000 0.00000 1.00000 1.00000 1.00000 0.50000 0.34375
+```

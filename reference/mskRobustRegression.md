@@ -54,3 +54,17 @@ A list with:
 - model:
 
   The fitted model object
+
+## Examples
+
+``` r
+set.seed(1)
+x <- 1:20
+y <- 2 * x + rnorm(20, sd = 2)
+fit <- mskRobustRegression(x, y)
+fit$coefficients
+#> (Intercept)           x 
+#>   -0.303484    2.071583 
+fit$r_squared
+#> [1] 0.9778823
+```

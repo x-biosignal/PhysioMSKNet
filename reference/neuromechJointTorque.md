@@ -85,7 +85,20 @@ An S3 object of class `"MSKNeuromechTorque"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-result <- neuromechJointTorque(emg_data, hg = hg)
-} # }
+set.seed(1)
+emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+result <- neuromechJointTorque(emg, sr = 1000, n_perm = 19)
+result
+#> MSK Neuromech Joint Torque Analysis
+#> ====================================
+#> Moment arm source: lookup 
+#> Joints analyzed: 2 
+#> Muscles matched: 3 
+#> 
+#> Per-joint summary:
+#>   elbow: net_torque=0.0129, coactivation=0.798, n=2
+#>   shoulder: net_torque=0.0521, coactivation=0.000, n=1
+#> 
+#> Mantel test: r = 0 , p = 1 
 ```

@@ -69,8 +69,23 @@ multiplier (0.5, 1.0, 1.5).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-risk <- mskCompensationRiskScore(compensation_result,
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+set.seed(1); emg_base <- matrix(abs(rnorm(300 * 4)), 300, 4)
+set.seed(2); emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- colnames(emg_base) <-
+  c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+result <- mskDetectCompensation(emg, emg_base, "Biceps Brachii", hg = hg)
+risk <- mskCompensationRiskScore(result, hg = hg,
   duration_weeks = 4, load_intensity = "moderate")
-} # }
+risk
+#> MSK Compensation Risk Assessment
+#> =================================
+#> Overall risk: 0.000 (LOW)
+#> 
+#> Recommendation: No compensating muscles detected. Continue monitoring. 
 ```

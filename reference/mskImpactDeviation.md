@@ -37,3 +37,15 @@ from a regression of impact score vs. degree.
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+hg <- MSKHypergraph(C)
+scores <- mskImpactScoreAll(mskSimulate(hg, n_steps = 50), verbose = FALSE)
+mskImpactDeviation(scores, hg)
+#> m1 m2 m3 m4 
+#>  0  0  0  0 
+```

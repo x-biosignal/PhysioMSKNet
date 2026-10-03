@@ -55,8 +55,28 @@ A list with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-outcome <- mskPredictFunctionalOutcome("Biceps Brachii")
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+outcome <- mskPredictFunctionalOutcome("Biceps Brachii", hg = hg)
 ci <- mskOutcomeConfidenceInterval(outcome)
-} # }
+ci
+#> $ci
+#>                   outcome point_estimate lower upper width
+#> 1      rom_Biceps Brachii           81.3  74.6  87.8  13.1
+#> 2 strength_Biceps Brachii           80.5  71.5  89.0  17.5
+#> 3      function_aggregate           71.9  58.5  70.7  12.3
+#> 
+#> $method
+#> [1] "bootstrap"
+#> 
+#> $n_boot
+#> [1] 100
+#> 
+#> $overall_uncertainty
+#> [1] 14.3
+#> 
 ```

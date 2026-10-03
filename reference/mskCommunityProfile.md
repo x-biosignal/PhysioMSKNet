@@ -96,8 +96,33 @@ Murphy AC et al. (2018) PLOS Biology 16(1): e2002811.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-profile <- mskCommunityProfile(community_id = 1)
-print(profile)
-} # }
+if (requireNamespace("PhysioAnnotationHub", quietly = TRUE)) {
+  C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+              nrow = 6, byrow = TRUE,
+              dimnames = list(paste0("bone", 1:6),
+                c("Biceps Brachii", "Deltoid", "Trapezius",
+                  "Triceps Brachii", "Brachialis")))
+  hg <- MSKHypergraph(C)
+  profile <- mskCommunityProfile(community_id = 1, hg = hg)
+  print(profile)
+}
+#> Annotated MSKHypergraph: 5/5 muscles (100.0%), 6/6 bones (100.0%) matched
+#> MSK Community Profile
+#> =====================
+#> Community ID: 1 
+#> Muscles: 1 
+#> Mean degree: 2 
+#> Mean impact deviation: -0.73 
+#> 
+#> Dominant region: upper_limb 
+#> Dominant action: elbow_flexion 
+#> Dominant nerve: Musculocutaneous Nerve 
+#> 
+#> Muscles: Biceps Brachii
+#> 
+#> Body Region Distribution:
+#>   upper_limb                1
+#> 
+#> Nerve Distribution:
+#>   Musculocutaneous Nerve    1
 ```

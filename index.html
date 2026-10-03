@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -661,7 +661,7 @@
 <h3 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes", repos = "https://cloud.r-project.org")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"x-biosignal/PhysioMSKNet"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -671,48 +671,44 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/x-biosignal/PhysioMSKNet" class="external-link">PhysioMSKNet</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># --- Build a hypergraph from bundled data ---</span></span>
+<span><span class="co"># --- Build the musculoskeletal hypergraph from bundled data ---</span></span>
+<span><span class="co"># Bones are vertices; muscles are hyperedges joining their attachment sites.</span></span>
 <span><span class="va">inc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/loadIncidenceMatrix.html">loadIncidenceMatrix</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">hg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/MSKHypergraph.html">MSKHypergraph</a></span><span class="op">(</span><span class="va">inc</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
+<span><span class="va">hg</span>  <span class="op">&lt;-</span> <span class="fu"><a href="reference/MSKHypergraph.html">MSKHypergraph</a></span><span class="op">(</span><span class="va">inc</span><span class="op">)</span></span>
+<span><span class="va">hg</span></span>
 <span></span>
-<span><span class="co"># --- Compute network metrics ---</span></span>
+<span><span class="co"># --- Degrees and structural network metrics ---</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="reference/vertexDegree.html">vertexDegree</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>   <span class="co"># most-connected bones</span></span>
 <span><span class="va">metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskNetworkMetrics.html">mskNetworkMetrics</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
-<span><span class="va">metrics</span><span class="op">$</span><span class="va">degree</span></span>
-<span><span class="va">metrics</span><span class="op">$</span><span class="va">betweenness</span></span>
-<span><span class="va">metrics</span><span class="op">$</span><span class="va">modularity</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">metrics</span><span class="op">$</span><span class="va">degree</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">metrics</span><span class="op">$</span><span class="va">density</span></span>
 <span></span>
-<span><span class="co"># --- Perturbation-based impact analysis ---</span></span>
-<span><span class="va">impact</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskImpactScoreAll.html">mskImpactScoreAll</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">impact</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># --- Project the hypergraph to muscle and bone graphs ---</span></span>
+<span><span class="va">muscle_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/projectMuscleGraph.html">projectMuscleGraph</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
+<span><span class="va">bone_graph</span>   <span class="op">&lt;-</span> <span class="fu"><a href="reference/projectBoneGraph.html">projectBoneGraph</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">muscle_graph</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># --- Detect communities ---</span></span>
-<span><span class="va">comm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskCommunityDetect.html">mskCommunityDetect</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
-<span><span class="va">profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskCommunityProfile.html">mskCommunityProfile</a></span><span class="op">(</span><span class="va">hg</span>, <span class="va">comm</span><span class="op">)</span></span>
+<span><span class="co"># --- Perturbation-based impact scoring (damped harmonic oscillator model) ---</span></span>
+<span><span class="va">sim</span>    <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskSimulate.html">mskSimulate</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
+<span><span class="va">probe</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">impact</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">probe</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu"><a href="reference/mskImpactScore.html">mskImpactScore</a></span><span class="op">(</span><span class="va">sim</span>, muscle_index <span class="op">=</span> <span class="va">i</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">impact</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">hg</span><span class="op">$</span><span class="va">muscle_names</span><span class="op">[</span><span class="va">probe</span><span class="op">]</span></span>
+<span><span class="va">impact</span></span>
 <span></span>
-<span><span class="co"># --- Visualize ---</span></span>
-<span><span class="fu"><a href="reference/plotMSKNetwork.html">plotMSKNetwork</a></span><span class="op">(</span><span class="va">hg</span>, community <span class="op">=</span> <span class="va">comm</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/plotImpactVsDegree.html">plotImpactVsDegree</a></span><span class="op">(</span><span class="va">hg</span>, <span class="va">impact</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/plotHomunculus.html">plotHomunculus</a></span><span class="op">(</span><span class="va">hg</span>, values <span class="op">=</span> <span class="va">impact</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># --- Cross-modal: map EMG to MSK network ---</span></span>
-<span><span class="va">emg_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emgToMSKMapping.html">emgToMSKMapping</a></span><span class="op">(</span></span>
-<span>  emg_channels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TA"</span>, <span class="st">"SOL"</span>, <span class="st">"GM"</span>, <span class="st">"GL"</span>, <span class="st">"RF"</span>, <span class="st">"VL"</span>, <span class="st">"VM"</span>, <span class="st">"BF"</span><span class="op">)</span>,</span>
-<span>  hypergraph <span class="op">=</span> <span class="va">hg</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/emgCommunityCompare.html">emgCommunityCompare</a></span><span class="op">(</span><span class="va">emg_map</span>, <span class="va">comm</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># --- Clinical prediction ---</span></span>
-<span><span class="va">predictor</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskClinicalPredictor.html">mskClinicalPredictor</a></span><span class="op">(</span></span>
-<span>  features <span class="op">=</span> <span class="va">metrics</span>,</span>
-<span>  outcome <span class="op">=</span> <span class="va">patient_scores</span>,</span>
-<span>  method <span class="op">=</span> <span class="st">"lasso"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/mskPredictFunctionalOutcome.html">mskPredictFunctionalOutcome</a></span><span class="op">(</span><span class="va">predictor</span>, <span class="va">new_features</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># --- Neuromechanics ---</span></span>
-<span><span class="va">synergies</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/neuromechMuscleSynergy.html">neuromechMuscleSynergy</a></span><span class="op">(</span><span class="va">emg_data</span>, n_synergies <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/neuromechSummary.html">neuromechSummary</a></span><span class="op">(</span><span class="va">hg</span>, <span class="va">emg_data</span>, <span class="va">imu_data</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># --- Degree distribution ---</span></span>
+<span><span class="fu"><a href="reference/plotDegreeDistribution.html">plotDegreeDistribution</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span></code></pre></div>
+<p>Community detection, betweenness centrality, and network plotting use the optional <strong>igraph</strong> package; the guard keeps the block inert when it is absent:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("igraph")</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"igraph"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">comm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskCommunityDetect.html">mskCommunityDetect</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
+<span>  <span class="va">comm</span><span class="op">$</span><span class="va">n_communities</span></span>
+<span>  <span class="va">comm</span><span class="op">$</span><span class="va">modularity</span></span>
+<span>  <span class="va">bw</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mskBetweenness.html">mskBetweenness</a></span><span class="op">(</span><span class="va">hg</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">bw</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="reference/plotMSKNetwork.html">plotMSKNetwork</a></span><span class="op">(</span><span class="va">hg</span>, community <span class="op">=</span> <span class="va">comm</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Cross-modal mapping (<code><a href="reference/emgToMSKMapping.html">emgToMSKMapping()</a></code>, <code><a href="reference/mocapToMSKMapping.html">mocapToMSKMapping()</a></code>), clinical prediction (<code><a href="reference/mskClinicalPredictor.html">mskClinicalPredictor()</a></code>), and the neuromechanics bridge (<code><a href="reference/neuromechMuscleSynergy.html">neuromechMuscleSynergy()</a></code>, <code><a href="reference/neuromechSummary.html">neuromechSummary()</a></code>) take physiological signal inputs; see the function help pages for worked examples.</p>
 </div>
 <div class="section level2">
 <h2 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a>

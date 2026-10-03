@@ -40,3 +40,13 @@ Same structure as mskCommunityDetect, but with consensus partition.
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+cp <- mskConsensusPartition(MSKHypergraph(C), gamma = 1, n_runs = 5)
+cp$n_communities
+#> [1] 2
+```

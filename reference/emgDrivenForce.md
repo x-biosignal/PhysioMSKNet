@@ -46,5 +46,5 @@ emg <- pmax(sin(2 * pi * 1 * t), 0) * abs(rnorm(length(t), 1, 0.1))
 f <- emgDrivenForce(emg, norm_len = 1, norm_vel = 0, sr = sr,
                     params = emgDrivenParams(max_isometric_force = 800))
 max(f)
-#> [1] 650.4056
+#> [1] 640.647
 ```

@@ -9,7 +9,7 @@ network impact, with clinical phase assignments."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,9 +98,28 @@ estimates for research purposes only.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">timeline</span> <span class="op">&lt;-</span> <span class="fu">mskRecoveryTimeline</span><span class="op">(</span><span class="st">"Biceps Brachii"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>, <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>, <span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>, <span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            nrow <span class="op">=</span> <span class="fl">6</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"bone"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>,</span></span>
+<span class="r-in"><span>                <span class="st">"Triceps Brachii"</span>, <span class="st">"Brachialis"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">hg</span> <span class="op">&lt;-</span> <span class="fu"><a href="MSKHypergraph.html">MSKHypergraph</a></span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">timeline</span> <span class="op">&lt;-</span> <span class="fu">mskRecoveryTimeline</span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, hg <span class="op">=</span> <span class="va">hg</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">timeline</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    week         muscle remaining_impact_pct      phase        milestone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0 Biceps Brachii                100.0      Acute                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 Biceps Brachii                 18.9 Remodeling Enter Remodeling</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     2 Biceps Brachii                  3.6     Return     Enter Return</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     3 Biceps Brachii                  0.7     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     4 Biceps Brachii                  0.1     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     5 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     6 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     7 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     8 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    9 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   10 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   11 Biceps Brachii                  0.0     Return                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   12 Biceps Brachii                  0.0     Return                 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

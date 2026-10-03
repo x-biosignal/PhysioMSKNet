@@ -93,11 +93,30 @@ a research exploration tool, not a clinical diagnostic.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-outcome <- mskPredictFunctionalOutcome(
-  c("Biceps Brachii", "Deltoid"),
-  patient_factors = list(age = 55, injury_severity = "moderate")
-)
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+outcome <- mskPredictFunctionalOutcome("Biceps Brachii", hg = hg)
 print(outcome)
-} # }
+#> MSK Functional Outcome Prediction
+#> ==================================
+#> Injured muscles: Biceps Brachii 
+#> Model type: network_topology 
+#> Confidence level: 0.95 
+#> 
+#> Aggregate Outcomes:
+#>   ROM:      91.3% of normal
+#>   Strength: 88.5% of normal
+#>   Function: 71.9 / 80 (LEFS-like)
+#> 
+#> Per-Muscle Predictions:
+#>   Biceps Brachii [rom]: 91.3 (% of normal, 95% CI: 81.5-100.0)
+#>   Biceps Brachii [strength]: 88.5 (% of normal, 95% CI: 76.7-100.0)
+#>   aggregate [function]: 71.9 (LEFS-like (0-80), 95% CI: 64.1-79.8)
+#> 
+#> Estimated Recovery (to 90% of predicted):
+#>   Biceps Brachii: 6.9 weeks
 ```

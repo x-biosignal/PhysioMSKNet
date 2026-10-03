@@ -24,3 +24,11 @@ mskReproducePaper(run_simulation = FALSE, verbose = TRUE)
 ## Value
 
 A list with all results and paper comparisons.
+
+## Examples
+
+``` r
+res <- mskReproducePaper(verbose = FALSE)
+res$recovery$r_squared
+#> [1] 0.4086942
+```

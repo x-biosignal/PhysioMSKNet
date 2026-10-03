@@ -47,3 +47,15 @@ A list with:
 ## References
 
 Murphy AC et al. (2018) PLOS Biology.
+
+## Examples
+
+``` r
+C <- matrix(c(1, 1, 0, 0,  0, 1, 1, 0,  0, 0, 1, 1,  1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("b", 1:4), paste0("m", 1:4)))
+set.seed(1)
+ens <- mskNullEnsemble(MSKHypergraph(C), n_null = 3,
+                       sim_params = list(n_steps = 50), verbose = FALSE)
+dim(ens$null_scores)
+#> [1] 4 3
+```

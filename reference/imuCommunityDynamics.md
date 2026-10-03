@@ -63,3 +63,18 @@ A list with:
 - time_resolved:
 
   Data frame if window_sec provided, NULL otherwise
+
+## Examples
+
+``` r
+set.seed(1)
+n <- 200
+imu <- list(
+  thigh  = matrix(rnorm(n * 3), n, 3),
+  shank  = matrix(rnorm(n * 3), n, 3),
+  foot   = matrix(rnorm(n * 3), n, 3),
+  pelvis = matrix(rnorm(n * 3), n, 3))
+res <- imuCommunityDynamics(imu)
+res$ratio
+#> [1] 2.746358
+```

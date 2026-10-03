@@ -28,3 +28,11 @@ Result from mskRobustRegression with additional paper comparison.
 ## References
 
 Murphy AC et al. (2018) PLOS Biology Table 4.
+
+## Examples
+
+``` r
+res <- mskImpactRecoveryModel()
+res$r_squared
+#> [1] 0.4086942
+```

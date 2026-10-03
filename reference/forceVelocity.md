@@ -31,3 +31,10 @@ forceVelocity(norm_vel, af = 0.25, f_ecc = 1.8, k_ecc = 0.15)
 ## Value
 
 Multiplier (0 at max shortening, 1 at isometric, up to `f_ecc`).
+
+## Examples
+
+``` r
+forceVelocity(c(-0.5, 0, 0.5))
+#> [1] 0.1666667 1.0000000 1.6153846
+```

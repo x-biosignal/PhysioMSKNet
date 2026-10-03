@@ -56,3 +56,17 @@ A list with:
 - unweighted_scores:
 
   Original (unweighted) impact scores
+
+## Details
+
+Requires a native OpenSim installation and an `.osim` model file, so the
+example cannot run offline and is not executed.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Requires a native OpenSim install and an .osim model file.
+result <- opensimForceToImpact("gait2392.osim", force_data = matrix(0, 100, 3))
+} # }
+```

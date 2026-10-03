@@ -11,7 +11,7 @@ aggregate per community."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,9 +132,38 @@ force, drive_efficiency</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">neuromechMotorDriveTopography</span><span class="op">(</span><span class="va">eeg</span>, <span class="va">emg</span>, <span class="va">force</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">emg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">emg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biceps Brachii"</span>, <span class="st">"Deltoid"</span>, <span class="st">"Trapezius"</span>, <span class="st">"Triceps Brachii"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">eeg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">3</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">eeg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C3"</span>, <span class="st">"Cz"</span>, <span class="st">"C4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">force_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>, <span class="fl">300</span>, <span class="fl">1</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">force_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"grf"</span></span></span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">neuromechMotorDriveTopography</span><span class="op">(</span><span class="va">eeg</span>, <span class="va">emg</span>, <span class="va">force_data</span>, sr <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">result</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $per_muscle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          muscle cortical_drive emg_activation  force</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biceps Brachii   Biceps Brachii       0.946702       0.962674 1.8746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deltoid                 Deltoid       0.710320       1.042152 0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trapezius             Trapezius       0.955149       1.089522 0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Triceps Brachii Triceps Brachii       0.985804       1.022636 0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 drive_efficiency</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biceps Brachii            2.0569</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deltoid                   0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trapezius                 0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Triceps Brachii           0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $per_community</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   community n_muscles mean_drive mean_activation mean_force</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         1         1  0.9551490        1.089522  0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         8         3  0.8809421        1.009154  0.6248546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $drive_force_correlation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2473665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $drive_force_p_value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7526335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

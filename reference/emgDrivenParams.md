@@ -40,3 +40,27 @@ emgDrivenParams(
 ## Value
 
 A named list of parameters.
+
+## Examples
+
+``` r
+emgDrivenParams(max_isometric_force = 800)
+#> $max_isometric_force
+#> [1] 800
+#> 
+#> $pennation
+#> [1] 0
+#> 
+#> $tau_act
+#> [1] 0.01
+#> 
+#> $tau_deact
+#> [1] 0.04
+#> 
+#> $emg_nonlin
+#> [1] 0
+#> 
+#> $max_emg
+#> NULL
+#> 
+```

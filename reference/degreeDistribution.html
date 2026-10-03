@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,19 @@
     <p>A data.frame with columns: degree, count, probability</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">hg</span> <span class="op">&lt;-</span> <span class="fu"><a href="MSKHypergraph.html">MSKHypergraph</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">degreeDistribution</span><span class="op">(</span><span class="va">hg</span>, type <span class="op">=</span> <span class="st">"muscle"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   degree count probability</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1     2 0.007407407</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      2   146 0.540740741</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      3    47 0.174074074</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      4    24 0.088888889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      5    10 0.037037037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      6     7 0.025925926</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

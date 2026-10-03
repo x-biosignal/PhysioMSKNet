@@ -27,3 +27,10 @@ emgToExcitation(emg, max_emg = NULL, nonlin = 0)
 ## Value
 
 Excitation in `[0, 1]`.
+
+## Examples
+
+``` r
+emgToExcitation(c(0.1, 0.5, 0.9, 0.3))
+#> [1] 0.1111111 0.5555556 1.0000000 0.3333333
+```

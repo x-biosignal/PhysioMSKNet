@@ -26,3 +26,10 @@ forceLengthPassive(norm_len, k_pe = 4, e0 = 0.6)
 ## Value
 
 Passive multiplier (\>= 0).
+
+## Examples
+
+``` r
+forceLengthPassive(c(1.0, 1.1, 1.2))
+#> [1] 0.00000000 0.01768222 0.05212247
+```

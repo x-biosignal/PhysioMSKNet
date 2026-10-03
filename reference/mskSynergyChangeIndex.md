@@ -37,7 +37,18 @@ per_synergy_change, alignment (permutation used).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+set.seed(1)
+synergy_t0 <- matrix(abs(rnorm(20)), 5, 4)
+synergy_t1 <- matrix(abs(rnorm(20)), 5, 4)
 sci <- mskSynergyChangeIndex(synergy_t0, synergy_t1, method = "cosine")
-} # }
+sci
+#> $global_change_index
+#> [1] 0.1490461
+#> 
+#> $per_synergy_change
+#> [1] 0.15684088 0.29802297 0.05274186 0.08857865
+#> 
+#> $alignment
+#> [1] 4 3 1 2
+#> 
 ```

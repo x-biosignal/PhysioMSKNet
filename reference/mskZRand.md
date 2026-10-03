@@ -26,3 +26,12 @@ Numeric z-Rand score. Values \> 1.96 indicate significant similarity.
 ## References
 
 Traud et al. (2011) Physical Review E.
+
+## Examples
+
+``` r
+p1 <- c(1, 1, 1, 2, 2, 2)
+p2 <- c(1, 1, 2, 2, 2, 2)
+mskZRand(p1, p2)
+#> [1] 1.412089
+```

@@ -79,9 +79,30 @@ effect size) is used.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-status <- mskDetectResponderStatus(tracker, mdc_result)
-status <- mskDetectResponderStatus(tracker, instrument = "fma_ue",
-                                   population = "stroke")
-} # }
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+mk <- function(s) { set.seed(s); m <- matrix(abs(rnorm(300 * 4)), 300, 4)
+  colnames(m) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii"); m }
+tracker <- mskLongitudinalTracker(list(T0 = mk(1), T1 = mk(2), T2 = mk(3)), hg = hg)
+status <- mskDetectResponderStatus(tracker)
+status
+#> MSK Responder Status
+#> ====================
+#> Overall: non_responder 
+#> 
+#> Summary:
+#>   Responders: 0 
+#>   Non-responders: 2 
+#>   Deteriorated: 2 
+#> 
+#> Per-muscle classification:
+#>           muscle        status  change threshold effect_size_d
+#>   Biceps Brachii non_responder  0.0302    0.0433        0.5572
+#>          Deltoid  deteriorated -0.0205    0.0190       -0.8596
+#>        Trapezius  deteriorated -0.1226    0.0519       -1.8908
+#>  Triceps Brachii non_responder  0.0133    0.0267        0.3971
 ```

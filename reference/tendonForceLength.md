@@ -27,3 +27,10 @@ tendonForceLength(norm_tendon_length, e0t = 0.04, kt = 3)
 ## Value
 
 Normalised tendon force (\>= 0).
+
+## Examples
+
+``` r
+tendonForceLength(c(1.0, 1.02, 1.04))
+#> [1] 0.0000000 0.1824255 1.0000000
+```

@@ -24,6 +24,11 @@ opensimToMSKHypergraph(model = NULL, model_path = NULL)
 
 An `MSKHypergraph` object with subject-specific anatomy.
 
+## Details
+
+Requires a native OpenSim installation and an `.osim` model file, so the
+example cannot run offline and is not executed.
+
 ## Note
 
 Requires the `xml2` package.

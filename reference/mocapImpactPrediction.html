@@ -9,7 +9,7 @@ the MSK incidence matrix to estimate muscle vulnerability."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioMSKNet</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,6 +112,1107 @@ simulation for impact deviation (default: TRUE).</p></dd>
 
 </dl></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">seg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span>, <span class="fl">300</span>, <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">seg</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"humerus"</span>, <span class="st">"radius"</span>, <span class="st">"femur"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">seg</span>, <span class="st">"sr"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">120</span></span></span>
+<span class="r-in"><span><span class="fu">mocapImpactPrediction</span><span class="op">(</span><span class="va">seg</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $vulnerability</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Trapezius                      Latissimus Dorsi </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                            17.8236991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Serratus Posterior Superior           Serratus Posterior Inferior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Levator Scapulae                        Rhomboid Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Rhomboid Major                     Serratus Anterior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               Deltoid                         Supraspinatus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.3240673                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Infraspinatus                           Teres Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.1758801                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Teres Major                         Subscapularis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.1758801                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Subclavius                      Pectoralis Major </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             7.8239095 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Pectoralis Minor                      Coracobrachialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Biceps Brachii                            Brachialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.6178707                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Triceps Brachii                              Anconeus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.3240673                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Pronator Teres                 Flexor Carpi Radialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.2938034                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Palmaris Longus                  Flexor Carpi Ulnaris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Flexor Digitorum Superficialis            Flexor Digitorum Profundus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             3.6935285                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Pollicis Longus                    Pronator Quadratus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.8394383                             1.9726800 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Brachioradialis        Extensor Carpi Radialis Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             1.7653447                             2.1758801 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Extensor Carpi Radialis Brevis                    Extensor Digitorum </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Extensor Digiti Minimi                Extensor Carpi Ulnaris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Supinator              Abductor Pollicis Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             5.3843015                             1.4270451 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Extensor Pollicis Brevis              Extensor Pollicis Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.2938034                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Extensor Indicis              Abductor Pollicis Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Pollicis Brevis                     Opponens Pollicis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Adductor Pollicis                       Palmaris Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Abductor Digiti Minimi           Flexor Digiti Minimi Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Opponens Digiti Minimi                   Palmar Interossei 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Palmar Interossei 2                  Palmar Interossei  3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 1                   Dorsal Interossei 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 3                   Dorsal Interossei 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 1                           Lumbrical 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 3                           Lumbrical 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Splenius Capitis                     Splenius Cervicis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Iliocostalis Lumborum                 Iliocostalis Thoracis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Iliocostalis Cervicis                  Longissimus Thoracis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Longissimus Cervicis                   Longissimus Capitis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Spinalis Thoracis                     Spinalis Cervicis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Spinalis Capitis                 Semispinalis Thoracis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Semispinalis Cervicis                  Semispinalis Capitis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Multifidus                       Interspinalis 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 2                       Interspinalis 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 4                       Interspinalis 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 6                       Interspinalis 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 8                       Interspinalis 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Interspinalis 10                      Interspinalis 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Interspinalis 12                           Rotatores 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 2                           Rotatores 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 4                           Rotatores 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 6                           Rotatores 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 8                           Rotatores 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Rotatores 10                          Rotatores 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 1                     Intertransverse 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 3                     Intertransverse 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 5                     Intertransverse 6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 7                     Intertransverse 8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 9                    Intertransverse 10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Intertransverse 11                    Intertransverse 12 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Intertransverse 13                    Intertransverse 14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Obliquus Capitis Inferior             Obliquus Capitis Superior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Rectus Capitis Posterior Major        Rectus Capitis Posterior Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Longus Colli                        Longus Capitis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Rectus Capitis Anterior              Rectus Capitis Lateralis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Anterior Scalene                       Scalene Minimus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Middle Scalene                     Posterior Scalene </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Sternocleidomastoid                              Platysma </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Sternohyoid                              Omohyoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Sternothyroid                            Thryohyoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Stylohyoid                             Digastric </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Mylohyoid                            Geniohyoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Occipitalis                             Frontalis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Orbicularis Oculi                 Corrugator Supercilii </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Orbicularis Oris Levator Labii Superioris Alaeque Nasi </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Levator Labii Superioris                     Zygomaticus Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Zygomaticus Major                   Levator Anguli Oris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Buccinator                 Depressor Anguli Oris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              Masseter                      Medial Pterygoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Lateral Pterygoid          Levator Palpebrae Superioris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Lateral Rectus                         Medial Rectus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Superior Rectus                       Inferior Rectus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Superior Oblique                      Inferior Oblique </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Tensor Fascia Lata                       Gluteus Maximus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             2.6259592 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Gluteus Medius                       Gluteus Minimus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.8609702                             2.0232800 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Piriformis                     Superior Gemellus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             2.0232800 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Inferior Gemellus                    Obturator Internus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             0.8609702 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Quadratus Femoris                        Semitendinosus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Semimembranosus                        Biceps Femoris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.3013396 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Adductor Longus                       Adductor Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             2.0232800 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Adductor Magnus                              Gracilis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.8609702                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Obturator Externus                             Sartorius </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Rectus Femoris                      Vastus Lateralis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.8609702 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Vastus Intermedius                       Vastus Medialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.8609702                             0.8609702 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Articularis Genus                           Psoas Major </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             3.7882690 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               Iliacus                             Pectineus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             2.0232800 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Gastrocnemius                                Soleus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Plantaris                             Popliteus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             2.0232800                             0.8609702 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Flexor Digitorum Longus                    Tibialis Posterior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Hallucis Longus                       Peroneus Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Peroneus Brevis                     Tibialis Anterior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Extensor Hallucis Longus             Extensor Digitorum Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Peroneus Tertius                     Abductor Hallucis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Flexor Digitorum Brevis                Abductor Digiti Minimi </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Abductor Ossis Metatarsi Quinti                     Quadratus Plantae </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 1                           Lumbrical 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 3                           Lumbrical 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Hallucis Brevis                     Adductor Hallucis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Flexor Digiti Minimi Brevis                  Plantar Interossei 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Plantar Interossei 2                  Plantar Interossei 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 1                   Dorsal Interossei 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 3                   Dorsal Interossei 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Extensor Hallucis Brevis             Extensor Digitorum Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Cricothryoid              Posterior cricoarytenoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Lateral cricoarytenoid                 Transversus arytenoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               Vocalis                        Thyroarytenoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Oblique arytenoid                         Aryepiglottic </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Thyroepiglottic                External intercostal 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 2                External intercostal 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 4                External intercostal 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 6                External intercostal 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 8                External intercostal 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               External intercostal 10               External intercostal 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 1                Internal intercostal 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 3                Internal intercostal 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 5                Internal intercostal 6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 7                Internal intercostal 8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 9               Internal intercostal 10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Internal intercostal 11               Innermost intercostal 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 2               Innermost intercostal 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 4               Innermost intercostal 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 6               Innermost intercostal 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 8               Innermost intercostal 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Innermost intercostal 10              Innermost intercostal 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Subcostalis 1                         Subcostalis 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Subcostalis 3                         Subcostalis 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Subcostalis 6                             Diaphragm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      External oblique                      Internal oblique </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Transversus abdominis                      Rectus abdominis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Pyramidalis                    Quadratus lumborum </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             0.0000000                             0.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bone_stress</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Humerus   Radius    Femur </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4.533092 4.109758 4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $muscle_stress_exposure</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Trapezius                      Latissimus Dorsi </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Serratus Posterior Superior           Serratus Posterior Inferior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Levator Scapulae                        Rhomboid Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Rhomboid Major                     Serratus Anterior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               Deltoid                         Supraspinatus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.533092                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Infraspinatus                           Teres Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.533092                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Teres Major                         Subscapularis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.533092                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Subclavius                      Pectoralis Major </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Pectoralis Minor                      Coracobrachialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Biceps Brachii                            Brachialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              8.642850                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Triceps Brachii                              Anconeus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.533092                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Pronator Teres                 Flexor Carpi Radialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.109758                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Palmaris Longus                  Flexor Carpi Ulnaris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Flexor Digitorum Superficialis            Flexor Digitorum Profundus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.109758                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Pollicis Longus                    Pronator Quadratus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.109758                              4.109758 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Brachioradialis        Extensor Carpi Radialis Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              8.642850                              4.533092 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Extensor Carpi Radialis Brevis                    Extensor Digitorum </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Extensor Digiti Minimi                Extensor Carpi Ulnaris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Supinator              Abductor Pollicis Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              8.642850                              4.109758 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Extensor Pollicis Brevis              Extensor Pollicis Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.109758                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Extensor Indicis              Abductor Pollicis Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Pollicis Brevis                     Opponens Pollicis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Adductor Pollicis                       Palmaris Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Abductor Digiti Minimi           Flexor Digiti Minimi Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Opponens Digiti Minimi                   Palmar Interossei 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Palmar Interossei 2                  Palmar Interossei  3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 1                   Dorsal Interossei 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 3                   Dorsal Interossei 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 1                           Lumbrical 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 3                           Lumbrical 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Splenius Capitis                     Splenius Cervicis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Iliocostalis Lumborum                 Iliocostalis Thoracis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Iliocostalis Cervicis                  Longissimus Thoracis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Longissimus Cervicis                   Longissimus Capitis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Spinalis Thoracis                     Spinalis Cervicis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Spinalis Capitis                 Semispinalis Thoracis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Semispinalis Cervicis                  Semispinalis Capitis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Multifidus                       Interspinalis 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 2                       Interspinalis 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 4                       Interspinalis 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 6                       Interspinalis 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Interspinalis 8                       Interspinalis 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Interspinalis 10                      Interspinalis 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Interspinalis 12                           Rotatores 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 2                           Rotatores 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 4                           Rotatores 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 6                           Rotatores 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Rotatores 8                           Rotatores 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Rotatores 10                          Rotatores 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 1                     Intertransverse 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 3                     Intertransverse 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 5                     Intertransverse 6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 7                     Intertransverse 8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Intertransverse 9                    Intertransverse 10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Intertransverse 11                    Intertransverse 12 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Intertransverse 13                    Intertransverse 14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Obliquus Capitis Inferior             Obliquus Capitis Superior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Rectus Capitis Posterior Major        Rectus Capitis Posterior Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Longus Colli                        Longus Capitis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Rectus Capitis Anterior              Rectus Capitis Lateralis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Anterior Scalene                       Scalene Minimus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Middle Scalene                     Posterior Scalene </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Sternocleidomastoid                              Platysma </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Sternohyoid                              Omohyoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Sternothyroid                            Thryohyoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Stylohyoid                             Digastric </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Mylohyoid                            Geniohyoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Occipitalis                             Frontalis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Orbicularis Oculi                 Corrugator Supercilii </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Orbicularis Oris Levator Labii Superioris Alaeque Nasi </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Levator Labii Superioris                     Zygomaticus Minor </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Zygomaticus Major                   Levator Anguli Oris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Buccinator                 Depressor Anguli Oris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              Masseter                      Medial Pterygoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Lateral Pterygoid          Levator Palpebrae Superioris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Lateral Rectus                         Medial Rectus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Superior Rectus                       Inferior Rectus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Superior Oblique                      Inferior Oblique </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Tensor Fascia Lata                       Gluteus Maximus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Gluteus Medius                       Gluteus Minimus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Piriformis                     Superior Gemellus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Inferior Gemellus                    Obturator Internus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Quadratus Femoris                        Semitendinosus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Semimembranosus                        Biceps Femoris </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Adductor Longus                       Adductor Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Adductor Magnus                              Gracilis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Obturator Externus                             Sartorius </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                        Rectus Femoris                      Vastus Lateralis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Vastus Intermedius                       Vastus Medialis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Articularis Genus                           Psoas Major </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               Iliacus                             Pectineus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Gastrocnemius                                Soleus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             Plantaris                             Popliteus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              4.215175                              4.215175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Flexor Digitorum Longus                    Tibialis Posterior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Hallucis Longus                       Peroneus Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Peroneus Brevis                     Tibialis Anterior </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Extensor Hallucis Longus             Extensor Digitorum Longus </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      Peroneus Tertius                     Abductor Hallucis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Flexor Digitorum Brevis                Abductor Digiti Minimi </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Abductor Ossis Metatarsi Quinti                     Quadratus Plantae </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 1                           Lumbrical 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Lumbrical 3                           Lumbrical 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Flexor Hallucis Brevis                     Adductor Hallucis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Flexor Digiti Minimi Brevis                  Plantar Interossei 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Plantar Interossei 2                  Plantar Interossei 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 1                   Dorsal Interossei 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Dorsal Interossei 3                   Dorsal Interossei 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Extensor Hallucis Brevis             Extensor Digitorum Brevis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Cricothryoid              Posterior cricoarytenoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Lateral cricoarytenoid                 Transversus arytenoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               Vocalis                        Thyroarytenoid </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Oblique arytenoid                         Aryepiglottic </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       Thyroepiglottic                External intercostal 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 2                External intercostal 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 4                External intercostal 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 6                External intercostal 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                External intercostal 8                External intercostal 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               External intercostal 10               External intercostal 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 1                Internal intercostal 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 3                Internal intercostal 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 5                Internal intercostal 6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 7                Internal intercostal 8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Internal intercostal 9               Internal intercostal 10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Internal intercostal 11               Innermost intercostal 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 2               Innermost intercostal 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 4               Innermost intercostal 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 6               Innermost intercostal 7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Innermost intercostal 8               Innermost intercostal 9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Innermost intercostal 10              Innermost intercostal 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Subcostalis 1                         Subcostalis 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Subcostalis 3                         Subcostalis 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         Subcostalis 6                             Diaphragm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      External oblique                      Internal oblique </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Transversus abdominis                      Rectus abdominis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Pyramidalis                    Quadratus lumborum </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              0.000000                              0.000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ranking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                    muscle vulnerability stress_exposure</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        Latissimus Dorsi       17.8237          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        Pectoralis Major        7.8239          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                               Supinator        5.3843          8.6429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                             Psoas Major        3.7883          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          Flexor Digitorum Superficialis        3.6935          4.1098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                         Gluteus Maximus        2.6260          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                           Supraspinatus        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                           Infraspinatus        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                             Teres Minor        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                            Teres Major        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                          Subscapularis        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       Coracobrachialis        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                             Brachialis        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                               Anconeus        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15         Extensor Carpi Radialis Longus        2.1759          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                        Gluteus Minimus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                             Piriformis        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                      Superior Gemellus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                      Inferior Gemellus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                      Quadratus Femoris        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                        Adductor Longus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                        Adductor Brevis        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                     Obturator Externus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                      Articularis Genus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25                                Iliacus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                              Pectineus        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                          Gastrocnemius        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28                              Plantaris        2.0233          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                     Pronator Quadratus        1.9727          4.1098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                        Brachioradialis        1.7653          8.6429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31               Abductor Pollicis Longus        1.4270          4.1098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                         Gluteus Medius        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33                     Obturator Internus        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34                        Adductor Magnus        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                       Vastus Lateralis        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                     Vastus Intermedius        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37                        Vastus Medialis        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38                              Popliteus        0.8610          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39                 Flexor Pollicis Longus        0.8394          4.1098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40                         Biceps Brachii        0.6179          8.6429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41                                Deltoid        0.3241          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42                        Triceps Brachii        0.3241          4.5331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43                         Biceps Femoris        0.3013          4.2152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44                         Pronator Teres        0.2938          4.1098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45               Extensor Pollicis Brevis        0.2938          4.1098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46                              Trapezius        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47            Serratus Posterior Superior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48            Serratus Posterior Inferior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49                       Levator Scapulae        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50                         Rhomboid Minor        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51                         Rhomboid Major        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52                      Serratus Anterior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53                             Subclavius        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54                       Pectoralis Minor        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55                  Flexor Carpi Radialis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56                        Palmaris Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57                   Flexor Carpi Ulnaris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58             Flexor Digitorum Profundus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59         Extensor Carpi Radialis Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60                     Extensor Digitorum        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61                 Extensor Digiti Minimi        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62                 Extensor Carpi Ulnaris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63               Extensor Pollicis Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64                       Extensor Indicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65               Abductor Pollicis Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66                 Flexor Pollicis Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67                      Opponens Pollicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68                      Adductor Pollicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69                        Palmaris Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70                 Abductor Digiti Minimi        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71            Flexor Digiti Minimi Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72                 Opponens Digiti Minimi        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73                    Palmar Interossei 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74                    Palmar Interossei 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75                   Palmar Interossei  3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76                    Dorsal Interossei 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77                    Dorsal Interossei 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78                    Dorsal Interossei 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79                    Dorsal Interossei 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80                            Lumbrical 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81                            Lumbrical 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82                            Lumbrical 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83                            Lumbrical 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84                       Splenius Capitis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85                      Splenius Cervicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86                  Iliocostalis Lumborum        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87                  Iliocostalis Thoracis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88                  Iliocostalis Cervicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89                   Longissimus Thoracis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90                   Longissimus Cervicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91                    Longissimus Capitis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92                      Spinalis Thoracis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93                      Spinalis Cervicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94                       Spinalis Capitis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95                  Semispinalis Thoracis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96                  Semispinalis Cervicis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97                   Semispinalis Capitis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98                             Multifidus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99                        Interspinalis 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100                       Interspinalis 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101                       Interspinalis 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102                       Interspinalis 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103                       Interspinalis 5        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104                       Interspinalis 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105                       Interspinalis 7        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106                       Interspinalis 8        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107                       Interspinalis 9        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108                      Interspinalis 10        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109                      Interspinalis 11        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110                      Interspinalis 12        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111                           Rotatores 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112                           Rotatores 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113                           Rotatores 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114                           Rotatores 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115                           Rotatores 5        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116                           Rotatores 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117                           Rotatores 7        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118                           Rotatores 8        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119                           Rotatores 9        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120                          Rotatores 10        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121                          Rotatores 11        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122                     Intertransverse 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123                     Intertransverse 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124                     Intertransverse 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125                     Intertransverse 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126                     Intertransverse 5        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127                     Intertransverse 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128                     Intertransverse 7        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129                     Intertransverse 8        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130                     Intertransverse 9        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131                    Intertransverse 10        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132                    Intertransverse 11        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133                    Intertransverse 12        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134                    Intertransverse 13        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135                    Intertransverse 14        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136             Obliquus Capitis Inferior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137             Obliquus Capitis Superior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138        Rectus Capitis Posterior Major        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139        Rectus Capitis Posterior Minor        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140                          Longus Colli        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141                        Longus Capitis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142               Rectus Capitis Anterior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143              Rectus Capitis Lateralis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144                      Anterior Scalene        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145                       Scalene Minimus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146                        Middle Scalene        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147                     Posterior Scalene        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148                   Sternocleidomastoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149                              Platysma        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150                           Sternohyoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151                              Omohyoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152                         Sternothyroid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153                            Thryohyoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154                            Stylohyoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155                             Digastric        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156                             Mylohyoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157                            Geniohyoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158                           Occipitalis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159                             Frontalis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160                     Orbicularis Oculi        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161                 Corrugator Supercilii        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162                      Orbicularis Oris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163 Levator Labii Superioris Alaeque Nasi        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164              Levator Labii Superioris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165                     Zygomaticus Minor        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166                     Zygomaticus Major        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167                   Levator Anguli Oris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168                            Buccinator        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169                 Depressor Anguli Oris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170                              Masseter        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171                      Medial Pterygoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172                     Lateral Pterygoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173          Levator Palpebrae Superioris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174                        Lateral Rectus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175                         Medial Rectus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176                       Superior Rectus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177                       Inferior Rectus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178                      Superior Oblique        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179                      Inferior Oblique        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180                    Tensor Fascia Lata        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181                        Semitendinosus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182                       Semimembranosus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183                              Gracilis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184                             Sartorius        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185                        Rectus Femoris        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186                                Soleus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187               Flexor Digitorum Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188                    Tibialis Posterior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189                Flexor Hallucis Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190                       Peroneus Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191                       Peroneus Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192                     Tibialis Anterior        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193              Extensor Hallucis Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194             Extensor Digitorum Longus        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195                      Peroneus Tertius        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196                     Abductor Hallucis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197               Flexor Digitorum Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198                Abductor Digiti Minimi        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199       Abductor Ossis Metatarsi Quinti        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200                     Quadratus Plantae        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201                           Lumbrical 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202                           Lumbrical 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203                           Lumbrical 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204                           Lumbrical 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205                Flexor Hallucis Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206                     Adductor Hallucis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207           Flexor Digiti Minimi Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208                  Plantar Interossei 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209                  Plantar Interossei 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210                  Plantar Interossei 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211                   Dorsal Interossei 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212                   Dorsal Interossei 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213                   Dorsal Interossei 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214                   Dorsal Interossei 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215              Extensor Hallucis Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216             Extensor Digitorum Brevis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217                          Cricothryoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218              Posterior cricoarytenoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219                Lateral cricoarytenoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220                 Transversus arytenoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221                               Vocalis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222                        Thyroarytenoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223                     Oblique arytenoid        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224                         Aryepiglottic        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225                       Thyroepiglottic        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226                External intercostal 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227                External intercostal 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228                External intercostal 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229                External intercostal 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230                External intercostal 5        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231                External intercostal 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232                External intercostal 7        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233                External intercostal 8        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234                External intercostal 9        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235               External intercostal 10        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236               External intercostal 11        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237                Internal intercostal 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238                Internal intercostal 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239                Internal intercostal 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240                Internal intercostal 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241                Internal intercostal 5        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242                Internal intercostal 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243                Internal intercostal 7        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244                Internal intercostal 8        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245                Internal intercostal 9        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246               Internal intercostal 10        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247               Internal intercostal 11        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248               Innermost intercostal 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249               Innermost intercostal 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250               Innermost intercostal 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251               Innermost intercostal 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252               Innermost intercostal 5        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253               Innermost intercostal 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254               Innermost intercostal 7        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255               Innermost intercostal 8        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256               Innermost intercostal 9        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257              Innermost intercostal 10        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258              Innermost intercostal 11        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259                         Subcostalis 1        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260                         Subcostalis 2        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261                         Subcostalis 3        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262                         Subcostalis 4        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263                         Subcostalis 6        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264                             Diaphragm        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265                      External oblique        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266                      Internal oblique        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267                 Transversus abdominis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268                      Rectus abdominis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269                           Pyramidalis        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270                    Quadratus lumborum        0.0000          0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     impact_deviation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             3.9319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             1.7260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6             0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7            -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8            -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9            -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31            0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46            5.8621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47            0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48            1.1745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49            0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51            0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52            1.4502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57            0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58            0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60            1.7260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64            0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68            0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75           -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79            0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84            2.0017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85            0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86            3.3804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87            2.2774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88            1.4502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89            7.2408</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90            1.7260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91            1.4502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92            3.3804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93            0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94            1.1745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95            2.5532</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96            2.2774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97            2.0017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98            5.5864</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99           -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140           0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141           0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144           0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146           1.1745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160           0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168           0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171           0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187           0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188           2.2774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189           0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190           0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192           0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193           0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194           2.2774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196           0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197           0.6230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206           0.0715</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214          -0.2043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216           0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220          -0.7557</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223          -0.7557</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264           1.7260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265           2.0017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266           0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267           1.7260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268           0.3472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269          -0.4800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270           0.8987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -70,10 +70,25 @@ An S3 object of class `"MSKCompensationEvolution"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-evolution <- mskCompensationEvolution(
-  timepoints_emg = list(week0 = emg0, week2 = emg2, week4 = emg4),
-  injured_muscles = c("Biceps Brachii")
-)
-} # }
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+mk <- function(s) { set.seed(s); m <- matrix(abs(rnorm(300 * 4)), 300, 4)
+  colnames(m) <- c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii"); m }
+tps <- list(week0 = mk(1), week2 = mk(2), week4 = mk(3))
+evolution <- mskCompensationEvolution(tps, "Biceps Brachii", hg = hg)
+evolution
+#> MSK Compensation Evolution
+#> ==========================
+#> Timepoint summary:
+#>   week2: 0 compensating, mean z = -0.10
+#>   week4: 0 compensating, mean z = -0.07
+#> 
+#> Muscle trends:
+#>   Deltoid: absent (onset: none, resolution: ongoing)
+#>   Trapezius: absent (onset: none, resolution: ongoing)
+#>   Triceps Brachii: absent (onset: none, resolution: ongoing)
 ```

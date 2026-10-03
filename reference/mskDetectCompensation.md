@@ -99,12 +99,28 @@ An S3 object of class `"MSKCompensation"` with:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-result <- mskDetectCompensation(
-  emg = emg_current, emg_baseline = emg_pre,
-  injured_muscles = c("Biceps Brachii"),
-  z_threshold = 1.96
-)
+C <- matrix(c(1,1,0,0,0, 0,1,1,0,0, 0,0,1,1,0, 0,0,0,1,1, 1,0,0,0,1, 0,1,0,1,0),
+            nrow = 6, byrow = TRUE,
+            dimnames = list(paste0("bone", 1:6),
+              c("Biceps Brachii", "Deltoid", "Trapezius",
+                "Triceps Brachii", "Brachialis")))
+hg <- MSKHypergraph(C)
+set.seed(1); emg_base <- matrix(abs(rnorm(300 * 4)), 300, 4)
+set.seed(2); emg <- matrix(abs(rnorm(300 * 4)), 300, 4)
+colnames(emg) <- colnames(emg_base) <-
+  c("Biceps Brachii", "Deltoid", "Trapezius", "Triceps Brachii")
+result <- mskDetectCompensation(emg, emg_base, "Biceps Brachii", hg = hg)
 print(result)
-} # }
+#> MSK Compensatory Movement Detection
+#> ====================================
+#> Injured muscles: Biceps Brachii 
+#> Neighborhood order: 2 
+#> Z-score threshold: 1.96 
+#> 
+#> No compensating muscles detected.
+#> 
+#> Injured muscle status:
+#>   Biceps Brachii: z=0.18 (unchanged)
+#> 
+#> Compensation prevalence: 0.0%
 ```
