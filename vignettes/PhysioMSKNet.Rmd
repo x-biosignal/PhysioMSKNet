@@ -1,0 +1,119 @@
+---
+title: "Getting started with PhysioMSKNet"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with PhysioMSKNet}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6, fig.height = 4)
+library(PhysioMSKNet)
+set.seed(1)
+```
+
+PhysioMSKNet treats the musculoskeletal system as a **hypergraph**: bones are
+vertices and muscles are hyperedges connecting the bones they attach to
+(Murphy et al. 2018). This vignette walks through the core workflow — build a
+hypergraph, measure it, detect communities, score perturbation impact, and
+compare impact against a degree-preserving null model — using a small synthetic
+network first and then the bundled dataset. Everything here runs offline.
+
+## A hypergraph from an incidence matrix
+
+The incidence matrix `C` has one row per bone and one column per muscle, with
+`C[i, j] = 1` when muscle *j* attaches to bone *i*. Here is a tiny four-bone,
+four-muscle ring:
+
+```{r build}
+C <- matrix(c(1, 1, 0, 0,   0, 1, 1, 0,   0, 0, 1, 1,   1, 0, 0, 1),
+            nrow = 4, dimnames = list(paste0("bone", 1:4), paste0("m", 1:4)))
+hg <- MSKHypergraph(C)
+hg
+```
+
+The degree of a muscle (hyperedge) is the number of bones it spans; the degree
+of a bone (vertex) is the number of muscles attached to it:
+
+```{r degrees}
+hyperedgeDegree(hg)
+vertexDegree(hg)
+```
+
+## Projections and network metrics
+
+Collapsing the hypergraph onto the bones gives a weighted bone–bone graph; the
+network metrics are computed on that projection.
+
+```{r metrics}
+as.matrix(projectBoneGraph(hg))
+m <- mskNetworkMetrics(hg, type = "bone")
+m$density
+m$degree
+```
+
+## Community detection
+
+`mskCommunityDetect()` runs Louvain modularity with a resolution parameter
+`gamma`. On the bundled network the paper's resolution (`gamma = 4.3`) yields
+the functional muscle communities:
+
+```{r community}
+hg_full <- MSKHypergraph()
+comm <- mskCommunityDetect(hg_full, gamma = 4.3)
+comm$n_communities
+plotCommunityStructure(comm)
+```
+
+## Perturbation impact
+
+The impact score perturbs one muscle in a damped harmonic-oscillator model and
+sums the resulting displacement across all bones. `mskSimulate()` sets the
+model up; a short run is enough for the synthetic network:
+
+```{r impact}
+sim <- mskSimulate(hg, n_steps = 100)
+scores <- mskImpactScoreAll(sim, verbose = FALSE)
+scores
+```
+
+## Comparison against a null model
+
+To tell a structurally important muscle from one that merely has a high degree,
+compare its impact against a degree-preserving null ensemble. The deviation is
+expressed in standard deviations of the null distribution:
+
+```{r null}
+ens <- mskNullEnsemble(hg, n_null = 20, sim_params = list(n_steps = 100),
+                       verbose = FALSE)
+mskImpactDeviation(scores, hg, ens$null_scores)
+```
+
+## Reproducing the paper's statistics
+
+The bundled validation tables let you reproduce the headline relationships
+without re-running the full simulation. For example, the impact-deviation /
+clinical-recovery regression (Fig. 3b):
+
+```{r reproduce}
+rec <- mskImpactRecoveryModel()
+rec$r_squared
+rec$paper_target$r_squared
+```
+
+## Where to go next
+
+- Bridge the network to measured signals with `emgToMSKMapping()`,
+  `imuToMSKMapping()` and `mocapToMSKMapping()`, then the matched analyses
+  (`imuNetworkKinematics()`, `imuImpactPrediction()`, ...).
+- The EMG-driven Hill muscle model (`emgDrivenForce()`,
+  `calibrateEMGDrivenModel()`) turns an EMG envelope into muscle force and joint
+  moment.
+- See `?PhysioMSKNet` for the full, task-grouped index of entry points.
+
+## Reference
+
+Murphy AC, Muldoon SF, Baker D, Lastowka A, Bennett B, Yang M, Bhatt P,
+Bassett DS (2018). "Structure, function, and control of the human
+musculoskeletal network." *PLOS Biology* 16(1): e2002811.
